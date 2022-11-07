@@ -6,7 +6,7 @@ public class ProxyConfigHolder{
     private ProxyNetworkConfig proxyNetworkConfig;
     private ProxyCredentials proxyCredentials;
     
-    public ProxyConfigHolder{
+    public ProxyConfigHolder(){
         
     }
     
