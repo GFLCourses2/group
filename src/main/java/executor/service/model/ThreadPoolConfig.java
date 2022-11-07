@@ -43,5 +43,4 @@ class ThreadPoolConfig {
 	public int hashCode() {
 		return Objects.hash(corePoolSize, keepAliveTime);
 	}
-	
 }
