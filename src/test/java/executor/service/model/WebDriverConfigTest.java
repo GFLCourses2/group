@@ -7,7 +7,7 @@ import org.junit.*;
 public class WebDriverConfigTest {
 
     @Test
-    public void testEqualsAndHashCode_DTOEquals {
+    public void testEqualsAndHashCode_DTOEquals() {
         WebDriverConfig dto1 = new WebDriverConfig();
         WebDriverConfig dto2 = new WebDriverConfig();
         
@@ -26,7 +26,7 @@ public class WebDriverConfigTest {
     }
 
     @Test
-    public void testEqualsAndHashCode_DTOSame {
+    public void testEqualsAndHashCode_DTOSame() {
         WebDriverConfig dto1 = new WebDriverConfig();
         dto1.setWebDriverExecutable("driver");
         dto1.setUserAgent("agent");
