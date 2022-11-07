@@ -44,8 +44,8 @@ public class WebDriverConfigTest {
         String expected = "{" +
                             "\"webDriverExecutable\":\"driver\"" + 
                             ",\"userAgent\":\"agent\"" + 
-                            ",\"pageLoadTimeout\":1" + 
-                            ",\"implicitlyWait\":2" + 
+                            ",\"pageLoadTimeout\":\"1\"" + 
+                            ",\"implicitlyWait\":\"2\"" + 
                             "}";
         WebDriverConfig dto = new WebDriverConfig();
         dto.setWebDriverExecutable("driver");
