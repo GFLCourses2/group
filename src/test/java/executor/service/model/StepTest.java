@@ -23,7 +23,6 @@ public class StepTest {
     @Test
     public void testToString() {
         String expectedString = "{\"action\":\"Do step\",\"value\":\"one\"}";
-        
         Step step = new Step("Do step", "one");
         assertEquals(expectedString, step.toString());
     }
