@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-public WebDriverConfigTest {
+public class WebDriverConfigTest {
 
     @Test
     public void testEqualsAndHashCode_DTOEquals {
