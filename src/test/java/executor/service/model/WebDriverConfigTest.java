@@ -1,4 +1,4 @@
-package executor.service.model
+package executor.service.model;
 
 import static org.junit.Assert.*;
 
