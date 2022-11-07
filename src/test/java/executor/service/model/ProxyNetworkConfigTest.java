@@ -14,10 +14,10 @@ public class ProxyNetworkConfigTest {
         proxyNetworkConfig2 = new ProxyNetworkConfig();
 
         proxyNetworkConfig1.setHostName("geekforless.com.ua");
-        proxyNetworkConfig1.setPort(8080);
+        proxyNetworkConfig1.setPort(8081);
 
         proxyNetworkConfig2.setHostName("geekforless.com.ua");
-        proxyNetworkConfig2.setPort(8080);
+        proxyNetworkConfig2.setPort(8081);
     }
 
     @Test()
@@ -35,7 +35,7 @@ public class ProxyNetworkConfigTest {
     @Test()
     public void testHashCodeWhenObjectsNotEqual() {
         createObjects();
-        proxyNetworkConfig1.setPort(8081);
+        proxyNetworkConfig1.setPort(8080);
         assertNotEquals(proxyNetworkConfig1.hashCode(), proxyNetworkConfig2.hashCode());
     }
 
@@ -52,7 +52,7 @@ public class ProxyNetworkConfigTest {
         String expected = "{" + "\"hostname\":\""
                 + "geekforless.com.ua"
                 + "\"," + "\"port\":"
-                + 8080 + "}";
+                + 8081 + "}";
         assertEquals(expected, proxyNetworkConfig1.toString());
     }
 }
