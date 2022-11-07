@@ -2,7 +2,7 @@ package executor.service.model;
 
 import java.util.List;
 import java.util.Objects;
-
+//DTO Scenario
 public class Scenario {
     String name;
     String site;
