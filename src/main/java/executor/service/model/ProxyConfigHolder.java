@@ -1,5 +1,7 @@
 package executor.service.model;
 
+import java.util.Objects;
+
 public class ProxyConfigHolder{
     private ProxyNetworkConfig proxyNetworkConfig;
     private ProxyCredentials proxyCredentials;
