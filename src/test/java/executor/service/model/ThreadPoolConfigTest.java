@@ -17,7 +17,7 @@ public class ThreadPoolConfigTest {
 	@Test
 	public void testToString() {
 		System.out.println(threadPoolConfig.toString());
-		assertEquals("{\"corePoolSize\": 1, \"keepAliveTime\": 3}", threadPoolConfig.toString());
+		assertEquals("{\"corePoolSize\":1,\"keepAliveTime\":3}", threadPoolConfig.toString());
 	}
 	
 	@Test
