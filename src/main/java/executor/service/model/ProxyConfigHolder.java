@@ -6,7 +6,7 @@ public class ProxyConfigHolder{
     private ProxyNetworkConfig proxyNetworkConfig;
     private ProxyCredentials proxyCredentials;
     
-    public ProxyConfigHolder{
+    public ProxyConfigHolder(){
         
     }
     
@@ -30,10 +30,12 @@ public class ProxyConfigHolder{
         return proxyCredentials;
     }
 
+
+
     @Override
     public boolean equals(Object o){
         if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if(!(o instanceof ProxyConfigHolder)) return false;
         ProxyConfigHolder proxyConfHold = (ProxyConfigHolder) o;
         return Objects.equals(proxyNetworkConfig, proxyConfHold.proxyNetworkConfig) &&
             Objects.equals(proxyCredentails, proxyConfHold.proxyCredentails);
