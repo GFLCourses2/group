@@ -20,7 +20,7 @@ public class ScenarioTest {
         assertEquals(scenario1.hashCode(), scenario2.hashCode());
     }
 
-    
+
     @Test
     public void testToString(){
         String expectedString =
