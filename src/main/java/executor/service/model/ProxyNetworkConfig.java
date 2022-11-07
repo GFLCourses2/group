@@ -46,6 +46,6 @@ public class ProxyNetworkConfig {
 
     @Override
     public String toString() {
-        return "{" + "\"hostname\":\"" + hostname + "\"," + "\"port\":" + port + "}";
+        return "{" + "\"hostname\":\"" + hostname + "\"," + "\"port\":\"" + port + "\"}";
     }
 }
