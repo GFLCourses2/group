@@ -56,8 +56,8 @@ public class WebDriverConfig {
         return "{" +
                 "\"webDriverExecutable\":\"" + webDriverExecutable + "\"" +
                 ",\"userAgent\":\"" + userAgent + "\"" +
-                ",\"pageLoadTimeout\":\"" + pageLoadTimeout + "\"" +
-                ",\"implicitlyWait\":\"" + implicitlyWait + "\"" +
+                ",\"pageLoadTimeout\":" + pageLoadTimeout +
+                ",\"implicitlyWait\":" + implicitlyWait + 
                 "}";
     }
 }
