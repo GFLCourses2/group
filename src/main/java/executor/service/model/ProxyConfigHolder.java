@@ -28,7 +28,7 @@ public class ProxyConfigHolder{
         return proxyCredentials;
     }
 
-    
+    @Override
     public boolean equals(Object o){
         if(this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;
@@ -36,11 +36,13 @@ public class ProxyConfigHolder{
         return Objects.equals(proxyNetworkConfig, proxyConfHold.proxyNetworkConfig) &&
             Objects.equals(proxyCredentails, proxyConfHold.proxyCredentails);
     }
-    
+
+    @Override
     public int hashCode(){
         return Objects.hash(proxyNetworkConfig, proxyCredentials);
     }
-    
+
+    @Override
     public String toString() {
         return '{' +
                 "\"proxyNetworkConfig\"" + ':' + proxyNetworkConfig +
