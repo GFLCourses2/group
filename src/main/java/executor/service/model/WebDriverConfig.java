@@ -54,10 +54,10 @@ public class WebDriverConfig {
     @Override
     public String toString() {
         return "{" +
-                "\"webDriverExecutable\":\"" + webDriverExecutable + "\""
-                ",\"userAgent\":\"" + userAgent + "\""
-                ",\"pageLoadTimeout\":\"" + pageLoadTimeout + "\""
-                ",\"implicitlyWait\":\"" + implicitlyWait + "\""
+                "\"webDriverExecutable\":\"" + webDriverExecutable + "\"" +
+                ",\"userAgent\":\"" + userAgent + "\"" +
+                ",\"pageLoadTimeout\":\"" + pageLoadTimeout + "\"" +
+                ",\"implicitlyWait\":\"" + implicitlyWait + "\"" +
                 "}";
     }
 }
