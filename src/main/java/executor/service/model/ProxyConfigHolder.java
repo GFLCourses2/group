@@ -49,8 +49,8 @@ public class ProxyConfigHolder{
     @Override
     public String toString() {
         return '{' +
-                "\"proxyNetworkConfig\"" + ':' + proxyNetworkConfig +
-                "\"proxyCredentials\"" + ':' + proxyCredentials +
+                "\"proxyNetworkConfig\"" + ':' + '\"' + proxyNetworkConfig + '\"' +
+                "\"proxyCredentials\"" + ':' + '\"' + proxyCredentials + '\"' +
                 '}';
     }
 }
