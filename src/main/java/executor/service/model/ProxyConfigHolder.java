@@ -38,7 +38,7 @@ public class ProxyConfigHolder{
         if(!(o instanceof ProxyConfigHolder)) return false;
         ProxyConfigHolder proxyConfHold = (ProxyConfigHolder) o;
         return Objects.equals(proxyNetworkConfig, proxyConfHold.proxyNetworkConfig) &&
-            Objects.equals(proxyCredentails, proxyConfHold.proxyCredentails);
+            Objects.equals(proxyCredentials, proxyConfHold.proxyCredentials);
     }
 
     @Override
