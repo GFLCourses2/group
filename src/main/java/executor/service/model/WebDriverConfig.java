@@ -20,31 +20,25 @@ public class WebDriverConfig {
     public void setWebDriverExecutable(String webDriverExecutable) {
         this.webDriverExecutable = webDriverExecutable;
     }
-
     public void setUserAgent(String userAgent) {
         this.userAgent = userAgent;
     }
-
     public void setPageLoadTimeout(Long pageLoadTimeout) {
         this.pageLoadTimeout = pageLoadTimeout;
     }
-
     public void setImplicitlyWait(Long implicitlyWait) {
         this.implicitlyWait = implicitlyWait;
     }
 
     public String getWebDriverExecutable() {
         return webDriverExecutable;
-    }
-
+    } 
     public String getUserAgent() {
         return userAgent;
     }
-
     public Long getPageLoadTimeout() {
         return pageLoadTimeout;
     }
-
     public Long getImplicitlyWait() {
         return implicitlyWait;
     }
@@ -72,7 +66,7 @@ public class WebDriverConfig {
                 "\"webDriverExecutable\":\"" + webDriverExecutable + "\"" +
                 ",\"userAgent\":\"" + userAgent + "\"" +
                 ",\"pageLoadTimeout\":" + pageLoadTimeout +
-                ",\"implicitlyWait\":" + implicitlyWait +
+                ",\"implicitlyWait\":" + implicitlyWait + 
                 "}";
     }
 }
