@@ -42,9 +42,9 @@ public class ProxyCredentials {
 
     @Override
     public String toString() {
-        return "ProxyCredentials{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "{" +
+                "\"username\":\"" + username + "\"" +
+                ",\"password\":\"" + password + "\"" +
+                "}";
     }
 }
