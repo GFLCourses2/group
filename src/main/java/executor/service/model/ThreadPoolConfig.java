@@ -9,6 +9,14 @@ class ThreadPoolConfig {
 	private Integer corePoolSize;
 	private Long keepAliveTime;
 
+	public ThreadPoolConfig(Integer corePoolSize, Long keepAliveTime) {
+		this.corePoolSize = corePoolSize;
+		this.keepAliveTime = keepAliveTime;
+	}
+
+	public ThreadPoolConfig() {
+	}
+
 	public Integer getCorePoolSize() {
 		return corePoolSize;
 	}
@@ -27,7 +35,7 @@ class ThreadPoolConfig {
 
     @Override
 	public String toString() {
-		return "{\"corePoolSize\": " + corePoolSize + ", \"keepAliveTime\": " + keepAliveTime + '}';
+		return "{\"corePoolSize\":" + corePoolSize + ",\"keepAliveTime\":" + keepAliveTime + '}';
 	}
 
     @Override
