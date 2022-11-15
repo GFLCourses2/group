@@ -15,7 +15,10 @@ public class Sleep implements StepExecution {
 
     @Override
     public void step(WebDriver webDriver, Step step) {
-        long sleepTime = 3L;
-        webDriver.manage().timeouts().implicitlyWait(sleepTime, TimeUnit.SECONDS);
+        try {
+            TimeUnit.SECONDS.sleep(Long.parseLong(step.getValue()));
+        } catch (InterruptedException e) {
+            System.out.println("Interrupted exception: " + e.getMessage());
+        }
     }
 }
