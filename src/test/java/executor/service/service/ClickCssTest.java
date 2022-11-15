@@ -32,7 +32,7 @@ public class ClickCssTest {
     public void step() throws InterruptedException {
         WebDriver webDriver = webDriverFactory.create();
         Step step = new Step();
-        step.setAction("ClickCss");
+        step.setAction("сlickсss");
         step.setValue("body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.FPdoLc.lJ9FBc > center > input.RNmpXc");
 
         webDriver.get("https://www.google.com");
