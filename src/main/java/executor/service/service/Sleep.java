@@ -4,7 +4,6 @@ import executor.service.model.Step;
 
 import org.openqa.selenium.WebDriver;
 
-import java.text.ParseException;
 import java.util.concurrent.TimeUnit;
 
 public class Sleep implements StepExecution {
