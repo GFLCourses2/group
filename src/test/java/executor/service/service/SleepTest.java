@@ -31,8 +31,7 @@ public class SleepTest {
         Step step = new Step();
         step.setAction("sleep");
         step.setValue("3");
-
-
+        
         WebDriver webDriver = webDriverFactory.create();
         webDriver.get("https://google.com/");
 
