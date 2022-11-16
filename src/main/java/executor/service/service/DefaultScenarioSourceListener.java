@@ -34,7 +34,7 @@ public class DefaultScenarioSourceListener implements ScenarioSourceListener {
         ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.readValue(scenarioFile, Scenario[].class);
-        }catch (DatabindException de) {
+        } catch (DatabindException de) {
             Collection<Scenario> sl = mapper.readValue(scenarioFile,
                     mapper.getTypeFactory().constructCollectionType(Collection.class, Scenario.class));
             return sl.toArray(new Scenario[0]);
