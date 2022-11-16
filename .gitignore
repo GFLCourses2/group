@@ -31,3 +31,4 @@ executor-service.iml
 
 # driver
 /src/main/java/resources/chromedriver.exe
+/src/main/java/resources/chromedriver
