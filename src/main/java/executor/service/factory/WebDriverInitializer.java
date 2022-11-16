@@ -6,7 +6,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class WebDriverInitializer implements WebDriverFactory {
 
     static {
-        System.setProperty("webdriver.chrome.driver", "src/main/java/resources/chromedriver.exe");
+        String os = System.getProperty("os.name");
+        String driverProperty= "src/main/java/resources/chromedriver.exe";
+        if (os.contains("nux")) {
+            driverProperty = "src/main/java/resources/chromedriver";
+        }
+        System.setProperty("webdriver.chrome.driver", driverProperty);
     }
 
     @Override
