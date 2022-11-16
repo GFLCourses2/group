@@ -12,9 +12,12 @@ import java.util.List;
 
 
 public class DefaultProxySourcesClient implements ProxySourcesClient {
-    private File credentials;
-    private File networkConfig;
-    private ObjectMapper mapper;
+    private final File credentials ;
+    private final File networkConfig;
+    public DefaultProxySourcesClient(File credentials, File networkConfig) {
+        this.credentials = credentials;
+        this.networkConfig = networkConfig;
+    }
 
     @Override
     public ProxyConfigHolder[] getProxy() throws IOException {
@@ -32,6 +35,7 @@ public class DefaultProxySourcesClient implements ProxySourcesClient {
     }
 
     public ProxyCredentials[] getCredential() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.readValue(credentials, ProxyCredentials[].class);
         } catch (DatabindException de) {
@@ -40,6 +44,7 @@ public class DefaultProxySourcesClient implements ProxySourcesClient {
         }
     }
     public ProxyNetworkConfig[] getNetworkConfig() throws IOException{
+        ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.readValue(networkConfig, ProxyNetworkConfig[].class);
         } catch (DatabindException de) {
