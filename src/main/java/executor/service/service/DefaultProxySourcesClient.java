@@ -35,11 +35,11 @@ public class DefaultProxySourcesClient implements ProxySourcesClient {
     }
 
     public ProxyCredentials[] getCredential() throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return mapper.readValue(credentials, ProxyCredentials[].class);
+            return objectMapper.readValue(credentials, ProxyCredentials[].class);
         } catch (DatabindException de) {
-            List<ProxyCredentials> cr = mapper.readValue(credentials, mapper.getTypeFactory().constructCollectionType(List.class, ProxyCredentials.class));
+            List<ProxyCredentials> cr = objectMapper.readValue(credentials, objectMapper.getTypeFactory().constructCollectionType(List.class, ProxyCredentials.class));
             return cr.toArray(new ProxyCredentials[0]);
         }
     }
