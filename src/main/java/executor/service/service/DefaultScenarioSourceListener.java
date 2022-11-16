@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.Collection;
 
 public class DefaultScenarioSourceListener implements ScenarioSourceListener {
     private final WebDriver driver;
@@ -35,8 +35,8 @@ public class DefaultScenarioSourceListener implements ScenarioSourceListener {
         try {
             return mapper.readValue(scenarioFile, Scenario[].class);
         }catch (DatabindException de) {
-            List<Scenario> sl = mapper.readValue(scenarioFile,
-                    mapper.getTypeFactory().constructCollectionType(List.class, Scenario.class));
+            Collection<Scenario> sl = mapper.readValue(scenarioFile,
+                    mapper.getTypeFactory().constructCollectionType(Collection.class, Scenario.class));
             return sl.toArray(new Scenario[0]);
         }
     }
