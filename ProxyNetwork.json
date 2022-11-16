@@ -1,0 +1,14 @@
+[
+  {
+    "hostname": "host1",
+    "port": 8080
+  },
+  {
+    "hostname": "host2",
+    "port": 8088
+  },
+  {
+    "hostname": "host3",
+    "port": 8089
+  }
+]
