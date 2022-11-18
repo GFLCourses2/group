@@ -30,7 +30,6 @@ public class ClickXpathTest extends TestCase {
         WebDriver webDriver = webDriverFactory.create();
         Step step = new Step("clickXpath", "//*[@id=\"gb\"]/div/div[1]/div/div[1]/a");
         webDriver.get("https://www.google.com.ua/");
-        
         TimeUnit.SECONDS.sleep(4L);
         stepExecution.step(webDriver, step);
         TimeUnit.SECONDS.sleep(4L);
