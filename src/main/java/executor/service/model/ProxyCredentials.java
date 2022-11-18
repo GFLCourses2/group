@@ -11,6 +11,9 @@ public class ProxyCredentials {
         this.password = password;
     }
 
+    public ProxyCredentials() {
+    }
+
     public String getUsername() {
         return username;
     }

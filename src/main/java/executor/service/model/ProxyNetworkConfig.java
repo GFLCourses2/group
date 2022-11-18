@@ -1,26 +1,32 @@
 package executor.service.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class ProxyNetworkConfig {
-    private String hostname;
+    @JsonProperty("hostName")
+    @JsonAlias("hostname")
+    private String hostName;
+
     private Integer port;
 
     public ProxyNetworkConfig() {
 
     }
 
-    public ProxyNetworkConfig(String hostname, Integer port) {
-        this.hostname = hostname;
+    public ProxyNetworkConfig(String hostName, Integer port) {
+        this.hostName = hostName;
         this.port = port;
     }
 
     public String getHostName() {
-        return hostname;
+        return hostName;
     }
 
     public void setHostName(String hostname) {
-        this.hostname = hostname;
+        this.hostName = hostname;
     }
 
     public Integer getPort() {
@@ -36,16 +42,16 @@ public class ProxyNetworkConfig {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProxyNetworkConfig proxyNetWorkConfig = (ProxyNetworkConfig) o;
-        return Objects.equals(hostname, proxyNetWorkConfig.hostname) && Objects.equals(port, proxyNetWorkConfig.port);
+        return Objects.equals(hostName, proxyNetWorkConfig.hostName) && Objects.equals(port, proxyNetWorkConfig.port);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(hostname, port);
+        return Objects.hash(hostName, port);
     }
 
     @Override
     public String toString() {
-        return "{" + "\"hostname\":\"" + hostname + "\"," + "\"port\":" + port + "}";
+        return "{" + "\"hostname\":\"" + hostName + "\"," + "\"port\":" + port + "}";
     }
 }

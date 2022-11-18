@@ -6,44 +6,47 @@ import executor.service.model.ProxyConfigHolder;
 import executor.service.model.ProxyCredentials;
 import executor.service.model.ProxyNetworkConfig;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class DefaultProxySourcesClient implements ProxySourcesClient {
-    private final File credentials ;
+    private final File credentials;
     private final File networkConfig;
+
     public DefaultProxySourcesClient(File credentials, File networkConfig) {
         this.credentials = credentials;
         this.networkConfig = networkConfig;
     }
 
     @Override
-    public ProxyConfigHolder[] getProxy() throws IOException {
-        List<ProxyConfigHolder> tmp = new ArrayList<>();
-        ProxyCredentials[] proxyCredentials = getCredential();
-        ProxyNetworkConfig[] proxyNetworkConfigs = getNetworkConfig();
-        int max = Math.max(proxyCredentials.length, proxyNetworkConfigs.length);
-        for (int i=0; i < max; i++ ){
-            ProxyConfigHolder proxyConfigHolder = new ProxyConfigHolder();
-            if(max<proxyCredentials.length) proxyConfigHolder.setProxyCredentials(proxyCredentials[i]);
-            if(max<proxyNetworkConfigs.length) proxyConfigHolder.setProxyNetworkConfig(proxyNetworkConfigs[i]);
-            tmp.add(proxyConfigHolder);
+    public ProxyConfigHolder getProxy() throws IOException {
+        List<ProxyConfigHolder> result = new ArrayList<>();
+        ProxyCredentials[] proxyCredentials = getCredentials();
+        ProxyNetworkConfig[] proxyNetworkConfigs = getNetworkConfigs();
+        int minLength = Math.min(proxyCredentials.length, proxyNetworkConfigs.length);
+
+        for (int i = 0; i < minLength; i++) {
+            result.add(new ProxyConfigHolder(proxyNetworkConfigs[i], proxyCredentials[i]));
         }
-        return tmp.toArray(new ProxyConfigHolder[0]);
+
+        return result.get(0);
     }
 
-    public ProxyCredentials[] getCredential() throws IOException {
+    private ProxyCredentials[] getCredentials() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.readValue(credentials, ProxyCredentials[].class);
         } catch (DatabindException de) {
+            System.out.println(de.getMessage());
             List<ProxyCredentials> cr = objectMapper.readValue(credentials, objectMapper.getTypeFactory().constructCollectionType(List.class, ProxyCredentials.class));
             return cr.toArray(new ProxyCredentials[0]);
         }
     }
-    public ProxyNetworkConfig[] getNetworkConfig() throws IOException{
+
+    private ProxyNetworkConfig[] getNetworkConfigs() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.readValue(networkConfig, ProxyNetworkConfig[].class);
