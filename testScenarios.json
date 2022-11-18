@@ -9,7 +9,7 @@
       },
       {
         "action": "sleep",
-        "value": "5:10"
+        "value": "5"
       },
       {
         "action": "clickXpath",
@@ -27,7 +27,7 @@
       },
       {
         "action": "sleep",
-        "value": "5:10"
+        "value": "5"
       },
       {
         "action": "clickCss",

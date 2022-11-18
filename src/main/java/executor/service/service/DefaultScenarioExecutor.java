@@ -24,6 +24,5 @@ public class DefaultScenarioExecutor implements ScenarioExecutor {
                 sleep.step(webDriver, step);
             }
         }
-        webDriver.quit();
     }
 }

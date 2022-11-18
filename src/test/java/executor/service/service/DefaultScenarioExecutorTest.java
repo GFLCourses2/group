@@ -25,6 +25,7 @@ public class DefaultScenarioExecutorTest {
                 "#h\\.e02b498c978340a_122 > div > div > p:nth-child(2) > span:nth-child(2) > a"));
         steps.add(new Step("sleep", "5"));
         steps.add(new Step("clickXpath", "//*[@id=\"h.e02b498c978340a_288\"]/div/div/p[3]/span/a"));
+        steps.add(new Step("sleep", "3"));
         scenario = new Scenario("test1", "https://chromedriver.chromium.org/getting-started", steps);
     }
 
@@ -32,5 +33,6 @@ public class DefaultScenarioExecutorTest {
     public void execute() throws InterruptedException {
         WebDriver webDriver = webDriverFactory.create();
         scenarioExecutor.execute(scenario, webDriver);
+        webDriver.quit();
     }
 }
