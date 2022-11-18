@@ -33,9 +33,9 @@ public class ClickCssTest {
         WebDriver webDriver = webDriverFactory.create();
         Step step = new Step();
         step.setAction("сlickсss");
-        step.setValue("body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.FPdoLc.lJ9FBc > center > input.RNmpXc");
+        step.setValue("body > div > div.td-main > div > main > nav > ol > li:nth-child(1) > a");
 
-        webDriver.get("https://www.google.com");
+        webDriver.get("https://www.selenium.dev/documentation/webdriver/");
         TimeUnit.SECONDS.sleep(3L);
         stepExecution.step(webDriver, step);
         TimeUnit.SECONDS.sleep(3L);

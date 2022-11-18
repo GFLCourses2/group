@@ -104,8 +104,6 @@ public class WebDriverInitializer implements WebDriverFactory {
 
     private ProxyConfigHolder getProxyConfigHolder() {
         try {
-
-            objectMapper.writeValue(proxyConfigHolderPath, new ProxyConfigHolder());
             return objectMapper.readValue(proxyConfigHolderPath, ProxyConfigHolder.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
