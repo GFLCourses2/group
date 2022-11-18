@@ -11,8 +11,6 @@ import org.openqa.selenium.WebDriver;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class DefaultScenarioExecutorTest {
     private WebDriverFactory webDriverFactory;
     private ScenarioExecutor scenarioExecutor;
@@ -24,15 +22,15 @@ public class DefaultScenarioExecutorTest {
         scenarioExecutor = new DefaultScenarioExecutor();
         List<Step> steps = new ArrayList<>();
         steps.add(new Step("clickcss",
-                "body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.FPdoLc.lJ9FBc > center > input.RNmpXc"));
-        steps.add(new Step("sleep","5"));
-        steps.add(new Step("clickXpath","//*[@id=\"about-link\"]"));
-        scenario = new Scenario("test1","https://www.google.com",steps);
+                "#h\\.e02b498c978340a_122 > div > div > p:nth-child(2) > span:nth-child(2) > a"));
+        steps.add(new Step("sleep", "5"));
+        steps.add(new Step("clickXpath", "//*[@id=\"h.e02b498c978340a_288\"]/div/div/p[3]/span/a"));
+        scenario = new Scenario("test1", "https://chromedriver.chromium.org/getting-started", steps);
     }
 
     @Test
     public void execute() throws InterruptedException {
         WebDriver webDriver = webDriverFactory.create();
-        scenarioExecutor.execute(scenario,webDriver);
+        scenarioExecutor.execute(scenario, webDriver);
     }
 }
