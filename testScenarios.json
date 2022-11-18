@@ -1,0 +1,38 @@
+[
+  {
+    "name": "test scenario 1",
+    "site": "http://info.cern.ch",
+    "steps" : [
+      {
+        "action": "clickCss",
+        "value": "body > ul > li:nth-child(1) > a"
+      },
+      {
+        "action": "sleep",
+        "value": "5:10"
+      },
+      {
+        "action": "clickXpath",
+        "value": "/html/body/p"
+      }
+    ]
+  },
+  {
+    "name": "test scenario 2",
+    "site": "http://info.cern.ch",
+    "steps" : [
+      {
+        "action": "clickXpath",
+        "value": "/html/body/p"
+      },
+      {
+        "action": "sleep",
+        "value": "5:10"
+      },
+      {
+        "action": "clickCss",
+        "value": "body > ul > li:nth-child(1) > a"
+      }
+    ]
+  }
+]
