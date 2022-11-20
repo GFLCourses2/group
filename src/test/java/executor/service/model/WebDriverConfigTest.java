@@ -1,8 +1,8 @@
 package executor.service.model;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
-import org.junit.*;
+import static org.junit.Assert.assertEquals;
 
 public class WebDriverConfigTest {
 
@@ -10,7 +10,7 @@ public class WebDriverConfigTest {
     public void testEqualsAndHashCode_DTOEquals() {
         WebDriverConfig dto1 = new WebDriverConfig();
         WebDriverConfig dto2 = new WebDriverConfig();
-        
+
         dto1.setWebDriverExecutable("driver");
         dto1.setUserAgent("agent");
         dto1.setPageLoadTimeout(1L);
@@ -33,20 +33,18 @@ public class WebDriverConfigTest {
         dto1.setPageLoadTimeout(1L);
         dto1.setImplicitlyWait(2L);
 
-        WebDriverConfig dto2 = dto1;
-
-        assertEquals(dto1, dto2);
-        assertEquals(dto1.hashCode(), dto2.hashCode());
+        assertEquals(dto1, dto1);
+        assertEquals(dto1.hashCode(), dto1.hashCode());
     }
 
     @Test
     public void testToString() {
         String expected = "{" +
-                            "\"webDriverExecutable\":\"driver\"" + 
-                            ",\"userAgent\":\"agent\"" + 
-                            ",\"pageLoadTimeout\":1" + 
-                            ",\"implicitlyWait\":2" + 
-                            "}";
+                "\"webDriverExecutable\":\"driver\"" +
+                ",\"userAgent\":\"agent\"" +
+                ",\"pageLoadTimeout\":1" +
+                ",\"implicitlyWait\":2" +
+                "}";
         WebDriverConfig dto = new WebDriverConfig();
         dto.setWebDriverExecutable("driver");
         dto.setUserAgent("agent");

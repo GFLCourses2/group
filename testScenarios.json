@@ -2,7 +2,7 @@
   {
     "name": "test scenario 1",
     "site": "http://info.cern.ch",
-    "steps" : [
+    "steps": [
       {
         "action": "clickCss",
         "value": "body > ul > li:nth-child(1) > a"
@@ -20,7 +20,7 @@
   {
     "name": "test scenario 2",
     "site": "http://info.cern.ch",
-    "steps" : [
+    "steps": [
       {
         "action": "clickXpath",
         "value": "/html/body/p"

@@ -17,12 +17,12 @@ public class Step {
         return action;
     }
 
-    public String getValue() {
-        return value;
-    }
-
     public void setAction(String action) {
         this.action = action;
+    }
+
+    public String getValue() {
+        return value;
     }
 
     public void setValue(String value) {
