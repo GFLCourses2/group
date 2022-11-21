@@ -95,7 +95,7 @@ public class WebDriverInitializer implements WebDriverFactory {
     private Properties readProperties() {
         Properties properties = new Properties();
         try {
-            properties.load(Files.newInputStream(Paths.get("src\\main\\java\\resources\\WebDriverConfig.properties")));
+            properties.load(Files.newInputStream(Paths.get("src/main/java/resources/WebDriverConfig.properties")));
             return properties;
         } catch (IOException e) {
             throw new RuntimeException(e);
