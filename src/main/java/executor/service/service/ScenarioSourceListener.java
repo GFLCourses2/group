@@ -1,7 +1,10 @@
 package executor.service.service;
 
-import java.io.IOException;
+import executor.service.model.Scenario;
 
-public interface ScenarioSourceListener {
-    void execute() throws IOException, InterruptedException;
+import java.io.IOException;
+import java.util.Collection;
+
+public interface ScenarioSourceListener<S> {
+    Collection<Scenario> getScenarios(S source) throws IOException;
 }
