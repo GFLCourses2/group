@@ -1,7 +1,7 @@
 package executor.service.service;
 
-import executor.service.factory.WebDriverFactory;
-import executor.service.factory.WebDriverInitializer;
+import executor.service.factory.DefaultServiceFactory;
+import executor.service.factory.ServiceFactory;
 import executor.service.model.Step;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,13 +12,13 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertEquals;
 
 public class ClickXpathTest {
-    private WebDriverFactory webDriverFactory;
+    private ServiceFactory factory;
     private StepExecution stepExecution;
 
     @Before
     public void setUp() {
-        webDriverFactory = new WebDriverInitializer();
-        stepExecution = new ClickXpath();
+        factory = new DefaultServiceFactory();
+        stepExecution = factory.create(ClickXpath.class);
     }
 
     @Test
@@ -28,7 +28,7 @@ public class ClickXpathTest {
 
     @Test
     public void testStep() throws InterruptedException {
-        WebDriver webDriver = webDriverFactory.create();
+        WebDriver webDriver = factory.create(WebDriver.class);
         Step step = new Step("clickXpath", "/html/body/div/div[1]/div/main/nav/ol/li[1]/a");
         webDriver.get("https://www.selenium.dev/documentation/webdriver/");
         TimeUnit.SECONDS.sleep(4L);

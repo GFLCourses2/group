@@ -1,7 +1,7 @@
 package executor.service.service;
 
-import executor.service.factory.WebDriverFactory;
-import executor.service.factory.WebDriverInitializer;
+import executor.service.factory.DefaultServiceFactory;
+import executor.service.factory.ServiceFactory;
 import executor.service.model.Step;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,22 +15,23 @@ public class ClickCssTest {
 
     private StepExecution stepExecution;
 
-    private WebDriverFactory webDriverFactory;
+    private ServiceFactory factory;
 
     @Before
     public void setUp() {
-        stepExecution = new ClickCss();
-        webDriverFactory = new WebDriverInitializer();
+        factory = new DefaultServiceFactory();
+        stepExecution = factory.create(ClickCss.class);
     }
 
     @Test
     public void getStepAction() {
         assertEquals("clickcss", stepExecution.getStepAction());
+
     }
 
     @Test
     public void step() throws InterruptedException {
-        WebDriver webDriver = webDriverFactory.create();
+        WebDriver webDriver = factory.create(WebDriver.class);
         Step step = new Step();
         step.setAction("сlickсss");
         step.setValue("body > div > div.td-main > div > main > nav > ol > li:nth-child(1) > a");
