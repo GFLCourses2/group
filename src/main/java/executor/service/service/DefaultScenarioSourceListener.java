@@ -2,6 +2,7 @@ package executor.service.service;
 
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import executor.service.config.ConfigHolder;
 import executor.service.model.Scenario;
 import org.openqa.selenium.WebDriver;
 
@@ -15,10 +16,10 @@ public class DefaultScenarioSourceListener implements ScenarioSourceListener {
     private final ScenarioExecutor executor;
 
     public DefaultScenarioSourceListener(WebDriver webDriver,
-                                         File scenarioFile,
+                                         ConfigHolder config,
                                          ScenarioExecutor executor) {
         this.driver = webDriver;
-        this.scenarioFile = scenarioFile;
+        this.scenarioFile = config.getScenarioFile();
         this.executor = executor;
     }
 
@@ -28,6 +29,7 @@ public class DefaultScenarioSourceListener implements ScenarioSourceListener {
         for (Scenario s : scenarios) {
             executor.execute(s, driver);
         }
+        driver.quit();
     }
 
     private Scenario[] getScenarios() throws IOException {

@@ -1,7 +1,8 @@
 package executor.service.service;
 
+import executor.service.factory.DefaultServiceFactory;
+import executor.service.factory.ServiceFactory;
 import executor.service.factory.WebDriverFactory;
-import executor.service.factory.WebDriverInitializer;
 import executor.service.model.Scenario;
 import executor.service.model.Step;
 import org.junit.Before;
@@ -18,8 +19,9 @@ public class DefaultScenarioExecutorTest {
 
     @Before
     public void setUp() {
-        webDriverFactory = new WebDriverInitializer();
-        scenarioExecutor = new DefaultScenarioExecutor();
+        ServiceFactory factory = new DefaultServiceFactory();
+        webDriverFactory = factory.create(WebDriverFactory.class);
+        scenarioExecutor = factory.create(ScenarioExecutor.class);
         List<Step> steps = new ArrayList<>();
         steps.add(new Step("clickcss",
                 "#h\\.e02b498c978340a_122 > div > div > p:nth-child(2) > span:nth-child(2) > a"));

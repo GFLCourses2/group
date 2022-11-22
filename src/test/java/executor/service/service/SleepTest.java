@@ -1,7 +1,7 @@
 package executor.service.service;
 
-import executor.service.factory.WebDriverFactory;
-import executor.service.factory.WebDriverInitializer;
+import executor.service.factory.DefaultServiceFactory;
+import executor.service.factory.ServiceFactory;
 import executor.service.model.Step;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,13 +10,13 @@ import org.openqa.selenium.WebDriver;
 
 public class SleepTest {
 
-    private WebDriverFactory webDriverFactory;
+    private ServiceFactory factory;
     private StepExecution stepSleep;
 
     @Before
     public void setUp() {
-        webDriverFactory = new WebDriverInitializer();
-        stepSleep = new Sleep();
+        factory = new DefaultServiceFactory();
+        stepSleep = factory.create(Sleep.class);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class SleepTest {
         step.setAction("sleep");
         step.setValue("3");
 
-        WebDriver webDriver = webDriverFactory.create();
+        WebDriver webDriver = factory.create(WebDriver.class);
         webDriver.get("https://google.com/");
 
         stepSleep.step(webDriver, step);
