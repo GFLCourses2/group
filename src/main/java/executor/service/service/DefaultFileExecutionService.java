@@ -27,5 +27,7 @@ public class DefaultFileExecutionService implements FileExecutionService {
         for (Scenario s : scenarios) {
             scenarioExecutor.execute(s, webDriver);
         }
+
+        webDriver.quit();
     }
 }

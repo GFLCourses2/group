@@ -1,5 +1,7 @@
 package executor.service.service;
 
+import executor.service.factory.DefaultServiceFactory;
+import executor.service.factory.ServiceFactory;
 import executor.service.factory.WebDriverInitializer;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,21 +16,13 @@ public class DefaultFileExecutionServiceTest {
 
     private static final File testFile = new File("testScenarios.json");
 
-    private WebDriver driver;
-    private ScenarioFileListener fileListener;
-    private ScenarioExecutor scenarioExecutor;
-
-    private DefaultFileExecutionService executionService;
+    private FileExecutionService executionService;
 
     @Before
     public void init() {
-        driver = new WebDriverInitializer().create();
-        fileListener = new DefaultScenarioFileListener();
-        scenarioExecutor = new DefaultScenarioExecutor();
+        ServiceFactory factory = new DefaultServiceFactory();
 
-        executionService = new DefaultFileExecutionService(
-                driver, fileListener, scenarioExecutor
-        );
+        executionService = factory.create(FileExecutionService.class);
     }
 
     @Test

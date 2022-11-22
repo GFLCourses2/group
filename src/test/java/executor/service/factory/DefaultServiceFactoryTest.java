@@ -1,7 +1,6 @@
 package executor.service.factory;
 
-import executor.service.service.DefaultScenarioSourceListener;
-import executor.service.service.ScenarioSourceListener;
+import executor.service.service.DefaultFileExecutionService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +16,6 @@ public class DefaultServiceFactoryTest {
 
     @Test
     public void create() throws IOException, InterruptedException {
-        ScenarioSourceListener listener = factory.create(DefaultScenarioSourceListener.class);
-        listener.execute();
+        DefaultFileExecutionService executionService = factory.create(DefaultFileExecutionService.class);
     }
 }
