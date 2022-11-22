@@ -13,11 +13,11 @@ import java.nio.file.Paths;
 import java.util.Properties;
 
 public class ConfigHolder {
-    private final Path proxyConfigHolderPath = Paths.get("src/main/java/resources/ProxyConfigHolder.json");
+    private final Path proxyConfigHolderPath = Paths.get("src/main/java/resources/proxyConfigHolder.json");
 
-    private final Path webDriverConfigPath = Paths.get("src/main/java/resources/WebDriverConfig.properties");
+    private final Path webDriverConfigPath = Paths.get("src/main/java/resources/webDriverConfig.properties");
 
-    private final Path threadPoolConfigPath = Paths.get("src/main/java/resources/WebDriverConfig.properties");
+    private final Path threadPoolConfigPath = Paths.get("src/main/java/resources/threadPoolConfig.properties");
 
     private final File scenarioFile = new File("testScenarios.json");
 
