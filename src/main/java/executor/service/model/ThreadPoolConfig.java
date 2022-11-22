@@ -3,7 +3,7 @@ package executor.service.model;
 import java.util.Objects;
 
 
-class ThreadPoolConfig {
+public class ThreadPoolConfig {
     private Integer corePoolSize;
     private Long keepAliveTime;
 

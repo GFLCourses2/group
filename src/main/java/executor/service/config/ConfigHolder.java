@@ -2,6 +2,7 @@ package executor.service.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import executor.service.model.ProxyConfigHolder;
+import executor.service.model.ThreadPoolConfig;
 import executor.service.model.WebDriverConfig;
 
 import java.io.File;
@@ -16,15 +17,37 @@ public class ConfigHolder {
 
     private final Path webDriverConfigPath = Paths.get("src/main/java/resources/WebDriverConfig.properties");
 
+    private final Path threadPoolConfigPath = Paths.get("src/main/java/resources/WebDriverConfig.properties");
+
     private final File scenarioFile = new File("testScenarios.json");
 
     private final ProxyConfigHolder proxyConfigHolder;
 
     private final WebDriverConfig webDriverConfig;
 
+    private final ThreadPoolConfig threadPoolConfig;
+
     public ConfigHolder() {
         this.proxyConfigHolder = readProxyConfigHolder();
         this.webDriverConfig = readWebDriverConfig();
+        this.threadPoolConfig = readThreadPoolConfig();
+    }
+
+    private ThreadPoolConfig readThreadPoolConfig() {
+        ThreadPoolConfig result = new ThreadPoolConfig();
+        Properties properties = readProperties(threadPoolConfigPath);
+
+        result.setCorePoolSize(Integer.valueOf(
+                properties.getProperty("executorservice.common.corePoolSize", "1")));
+
+        result.setKeepAliveTime(Long.valueOf(
+                properties.getProperty("executorservice.common.keepAliveTime", "3")));
+
+        return result;
+    }
+
+    public ThreadPoolConfig getThreadPoolConfig() {
+        return threadPoolConfig;
     }
 
     public File getScenarioFile() {
@@ -41,7 +64,7 @@ public class ConfigHolder {
 
     private WebDriverConfig readWebDriverConfig() {
         WebDriverConfig result = new WebDriverConfig();
-        Properties properties = readWebDriverProperties();
+        Properties properties = readProperties(webDriverConfigPath);
         result.setWebDriverExecutable(
                 properties.getProperty(
                         "executorservice.common.webDriverExecutable",
@@ -61,10 +84,10 @@ public class ConfigHolder {
         }
     }
 
-    private Properties readWebDriverProperties() {
+    private Properties readProperties(Path path) {
         Properties properties = new Properties();
         try {
-            properties.load(Files.newInputStream(webDriverConfigPath));
+            properties.load(Files.newInputStream(path));
             return properties;
         } catch (IOException e) {
             throw new RuntimeException(e);
