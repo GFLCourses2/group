@@ -1,6 +1,8 @@
 package executor.service.factory;
 
-import executor.service.service.DefaultFileExecutionService;
+import executor.service.factory.servicefactory.DefaultServiceFactory;
+import executor.service.factory.servicefactory.ServiceFactory;
+import executor.service.service.execution.executionservice.DefaultFileExecutionService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +17,7 @@ public class DefaultServiceFactoryTest {
     }
 
     @Test
-    public void create() throws IOException, InterruptedException {
+    public void create() {
         DefaultFileExecutionService executionService = factory.create(DefaultFileExecutionService.class);
     }
 }

@@ -1,4 +1,4 @@
-package executor.service.service;
+package executor.service.service.execution.stepexecution;
 
 import executor.service.model.Step;
 import org.openqa.selenium.By;

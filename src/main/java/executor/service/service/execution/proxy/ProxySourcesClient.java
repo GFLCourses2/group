@@ -1,4 +1,4 @@
-package executor.service.service;
+package executor.service.service.execution.proxy;
 
 import executor.service.model.ProxyConfigHolder;
 

@@ -3,6 +3,8 @@ package executor.service.service;
 import executor.service.model.ProxyConfigHolder;
 import executor.service.model.ProxyCredentials;
 import executor.service.model.ProxyNetworkConfig;
+import executor.service.service.execution.proxy.DefaultProxySourcesClient;
+import executor.service.service.execution.proxy.ProxySourcesClient;
 import org.junit.Before;
 import org.junit.Test;
 

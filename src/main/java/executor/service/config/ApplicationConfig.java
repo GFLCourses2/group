@@ -1,8 +1,8 @@
 package executor.service.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import executor.service.factory.WebDriverFactory;
-import executor.service.factory.WebDriverProxy;
+import executor.service.factory.webdriver.WebDriverFactory;
+import executor.service.factory.webdriver.WebDriverProxy;
 import executor.service.model.ProxyConfigHolder;
 import executor.service.model.WebDriverConfig;
 import org.openqa.selenium.WebDriver;

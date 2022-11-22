@@ -1,10 +1,11 @@
 package executor.service.service;
 
-import executor.service.factory.DefaultServiceFactory;
-import executor.service.factory.ServiceFactory;
-import executor.service.factory.WebDriverFactory;
+import executor.service.factory.servicefactory.DefaultServiceFactory;
+import executor.service.factory.servicefactory.ServiceFactory;
+import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.model.Scenario;
 import executor.service.model.Step;
+import executor.service.service.execution.executionservice.ScenarioExecutor;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;

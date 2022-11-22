@@ -1,7 +1,8 @@
 package executor.service.service;
 
-import executor.service.factory.DefaultServiceFactory;
-import executor.service.factory.ServiceFactory;
+import executor.service.factory.servicefactory.DefaultServiceFactory;
+import executor.service.factory.servicefactory.ServiceFactory;
+import executor.service.service.execution.executionservice.FileExecutionService;
 import org.junit.Before;
 import org.junit.Test;
 

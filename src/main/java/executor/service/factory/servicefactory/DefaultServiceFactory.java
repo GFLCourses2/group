@@ -1,7 +1,8 @@
-package executor.service.factory;
+package executor.service.factory.servicefactory;
 
 import executor.service.config.ApplicationConfig;
 import executor.service.config.ConfigHolder;
+import executor.service.factory.webdriver.WebDriverInitializer;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Constructor;
