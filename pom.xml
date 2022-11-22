@@ -18,7 +18,32 @@
         <selenium-java.version>4.6.0</selenium-java.version>
         <jackson-databind.version>2.14.0</jackson-databind.version>
         <reflections-version>0.10.2</reflections-version>
+        <maven-assembly-plugin-version>3.4.2</maven-assembly-plugin-version>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven-assembly-plugin-version}</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>assemble-all</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <dependency>
@@ -42,6 +67,13 @@
             <artifactId>reflections</artifactId>
             <version>${reflections-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>${maven-assembly-plugin-version}</version>
+        </dependency>
+
 
     </dependencies>
 </project>
