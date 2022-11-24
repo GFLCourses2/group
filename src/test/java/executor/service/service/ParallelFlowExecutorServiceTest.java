@@ -22,9 +22,10 @@ public class ParallelFlowExecutorServiceTest {
     }
 
     @Test
-    public void testMethodExecuteParallelExecutorService() {
+    public void testMethodRunParallelExecutorService() {
         try {
             parallelExecutorService.run();
+        } catch (InterruptedException ignored) {
         } finally {
             webDriver.quit();
         }

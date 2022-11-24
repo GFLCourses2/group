@@ -4,6 +4,7 @@ import executor.service.config.ConfigHolder;
 import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.model.Scenario;
 import executor.service.service.listener.ScenarioSourceListener;
+import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 import java.util.Queue;
@@ -29,27 +30,24 @@ public class ParallelFlowExecutorService {
         this.threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(configHolder.getThreadPoolConfig().getCorePoolSize());
     }
 
-    public void run() {
+    public void run() throws InterruptedException {
+        WebDriver webDriver = webDriverFactory.create();
         addScenariosIntoQueue();
 
-        try {
-            for (int i = 0; i < scenarioQueue.size(); i++) {
-                Scenario scenario = scenarioQueue.poll();
-                Runnable runnable = () -> {
-                    try {
-                        scenarioExecutor.execute(scenario, webDriverFactory.create());
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                };
-                threadPoolExecutor.execute(runnable);
-            }
-        } finally {
-            threadPoolExecutor.shutdown();
+        for (int i = 0; i < scenarioQueue.size(); i++) {
+            Scenario scenario = scenarioQueue.poll();
+            threadPoolExecutor.execute(() -> {
+                try {
+                    scenarioExecutor.execute(scenario, webDriver);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            });
         }
+        threadPoolExecutor.shutdown();
     }
 
-    private void addScenariosIntoQueue() {
+    private void addScenariosIntoQueue() throws InterruptedException {
         Runnable worker = () -> {
             try {
                 scenarioListener.appendScenarios(scenarioQueue);
@@ -58,8 +56,9 @@ public class ParallelFlowExecutorService {
             }
         };
 
-        Thread thread = new Thread(worker);
-        thread.setName("Appender scenarios");
-        thread.start();
+        Thread appenderScenarios = new Thread(worker);
+        appenderScenarios.setName("Append new scenarios");
+        appenderScenarios.start();
+        appenderScenarios.join();
     }
 }
