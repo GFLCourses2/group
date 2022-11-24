@@ -3,13 +3,11 @@ package executor.service.service;
 import executor.service.factory.servicefactory.DefaultServiceFactory;
 import executor.service.factory.servicefactory.ServiceFactory;
 import executor.service.factory.webdriver.WebDriverFactory;
-
 import executor.service.service.execution.executionservice.ParallelFlowExecutorService;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-
-import java.io.IOException;
 
 public class ParallelFlowExecutorServiceTest {
     private ParallelFlowExecutorService parallelExecutorService;
@@ -24,9 +22,9 @@ public class ParallelFlowExecutorServiceTest {
     }
 
     @Test
-    public void testMethodExecuteParallelExecutorService() throws IOException {
+    public void testMethodExecuteParallelExecutorService() {
         try {
-            parallelExecutorService.execute();
+            parallelExecutorService.run();
         } finally {
             webDriver.quit();
         }

@@ -1,39 +1,44 @@
 package executor.service.service.execution.executionservice;
 
 import executor.service.config.ConfigHolder;
+import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.model.Scenario;
 import executor.service.service.listener.ScenarioSourceListener;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 
 public class ParallelFlowExecutorService {
-    private final ConfigHolder configHolder = new ConfigHolder();
-    private final ExecutionService executionService;
+
+    private final ScenarioExecutor scenarioExecutor;
     private final ScenarioSourceListener scenarioListener;
-    private final ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(configHolder.getThreadPoolConfig().getCorePoolSize());
+    private final WebDriverFactory webDriverFactory;
+    private final ThreadPoolExecutor threadPoolExecutor;
     private final Queue<Scenario> scenarioQueue = new LinkedBlockingQueue<>();
 
-    public ParallelFlowExecutorService(ExecutionService executionService, ScenarioSourceListener scenarioListener) {
-        this.executionService = executionService;
+    public ParallelFlowExecutorService(ConfigHolder configHolder,
+                                       ScenarioExecutor scenarioExecutor,
+                                       ScenarioSourceListener scenarioListener,
+                                       WebDriverFactory webDriverFactory) {
+        this.scenarioExecutor = scenarioExecutor;
         this.scenarioListener = scenarioListener;
+        this.webDriverFactory = webDriverFactory;
+        this.threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(configHolder.getThreadPoolConfig().getCorePoolSize());
     }
 
-    public void execute() throws IOException {
-        initScenarioQueue();
+    public void run() {
+        addScenariosIntoQueue();
 
         try {
             for (int i = 0; i < scenarioQueue.size(); i++) {
                 Scenario scenario = scenarioQueue.poll();
                 Runnable runnable = () -> {
                     try {
-                        executionService.execute(scenario);
-                    } catch (IOException | InterruptedException e) {
+                        scenarioExecutor.execute(scenario, webDriverFactory.create());
+                    } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                 };
@@ -44,8 +49,17 @@ public class ParallelFlowExecutorService {
         }
     }
 
-    private void initScenarioQueue() throws IOException {
-        List<Scenario> scenarios = new ArrayList<>(scenarioListener.getScenarios(configHolder.getScenarioFile()));
-        scenarioQueue.addAll(scenarios);
+    private void addScenariosIntoQueue() {
+        Runnable worker = () -> {
+            try {
+                scenarioListener.appendScenarios(scenarioQueue);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        };
+
+        Thread thread = new Thread(worker);
+        thread.setName("Appender scenarios");
+        thread.start();
     }
 }
