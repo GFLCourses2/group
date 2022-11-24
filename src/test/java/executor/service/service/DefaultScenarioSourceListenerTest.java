@@ -2,6 +2,8 @@ package executor.service.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import executor.service.config.ConfigHolder;
+import executor.service.factory.servicefactory.DefaultServiceFactory;
+import executor.service.factory.servicefactory.ServiceFactory;
 import executor.service.model.Scenario;
 import executor.service.model.Step;
 import executor.service.service.listener.DefaultScenarioSourceListener;
@@ -25,7 +27,8 @@ public class DefaultScenarioSourceListenerTest {
 
     @Before
     public void setUp() {
-        sourceListener = new DefaultScenarioSourceListener(new ObjectMapper(), new ConfigHolder());
+        ServiceFactory factory = new DefaultServiceFactory();
+        sourceListener = factory.create(ScenarioSourceListener.class);
     }
 
     @Test
