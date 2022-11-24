@@ -2,8 +2,8 @@ package executor.service.service;
 
 import executor.service.model.Scenario;
 import executor.service.model.Step;
-import executor.service.service.listener.DefaultScenarioFileListener;
-import executor.service.service.listener.ScenarioFileListener;
+import executor.service.service.listener.DefaultScenarioSourceListener;
+import executor.service.service.listener.ScenarioSourceListener;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,29 +12,43 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.Assert.assertArrayEquals;
 
-public class DefaultScenarioFileListenerTest {
+public class DefaultScenarioSourceListenerTest {
 
     private static final File testFile = new File("testScenarios.json");
 
-    private ScenarioFileListener sourceListener;
+    private ScenarioSourceListener sourceListener;
 
     @Before
     public void setUp() {
-        sourceListener = new DefaultScenarioFileListener();
+        sourceListener = new DefaultScenarioSourceListener();
     }
 
     @Test
-    public void testGetScenarios() throws IOException {
+    public void testReadScenarios() throws IOException {
         Collection<Scenario> expected = createScenariosLikeInFile();
 
         assertArrayEquals(
                 expected.toArray(new Scenario[0]),
-                sourceListener.getScenarios(testFile).toArray(new Scenario[0]));
+                sourceListener.readScenarios(testFile).toArray(new Scenario[0]));
+    }
+
+    @Test
+    public void testAppendScenarios() throws IOException {
+        Collection<Scenario> expected = createScenariosLikeInFile();
+        expected.addAll(createScenariosLikeInFile());
+        Collection<Scenario> actual = new LinkedBlockingQueue<>();
+
+        sourceListener.appendScenarios(testFile, actual);
+        sourceListener.appendScenarios(testFile, actual);
+
+        assertArrayEquals(
+                expected.toArray(new Scenario[0]), actual.toArray(new Scenario[0]));
     }
 
     private Collection<Scenario> createScenariosLikeInFile() {
