@@ -1,6 +1,7 @@
 package executor.service.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import executor.service.factory.webdriver.DefaultWebDriverFactory;
 import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.factory.webdriver.WebDriverProxy;
 import executor.service.model.ProxyConfigHolder;
@@ -38,6 +39,7 @@ public class ApplicationConfig {
         implementations.put(WebDriverConfig.class, configHolder.getWebDriverConfig());
         implementations.put(ObjectMapper.class, new ObjectMapper());
         implementations.put(WebDriver.class, new WebDriverProxy(webDriverFactory));
+        implementations.put(WebDriverFactory.class, new DefaultWebDriverFactory(configHolder));
     }
 
     public <T> T getImplementation(Class<T> clazz) {

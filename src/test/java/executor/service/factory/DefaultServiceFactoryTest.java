@@ -2,7 +2,7 @@ package executor.service.factory;
 
 import executor.service.factory.servicefactory.DefaultServiceFactory;
 import executor.service.factory.servicefactory.ServiceFactory;
-import executor.service.service.execution.executionservice.DefaultFileExecutionService;
+import executor.service.service.execution.executionservice.ParallelFlowExecutorService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +18,6 @@ public class DefaultServiceFactoryTest {
 
     @Test
     public void create() {
-        DefaultFileExecutionService executionService = factory.create(DefaultFileExecutionService.class);
+        factory.create(ParallelFlowExecutorService.class);
     }
 }

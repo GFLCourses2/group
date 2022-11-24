@@ -1,5 +1,6 @@
 package executor.service.factory.webdriver;
 
+import executor.service.config.ConfigHolder;
 import executor.service.model.ProxyConfigHolder;
 import executor.service.model.ProxyCredentials;
 import executor.service.model.ProxyNetworkConfig;
@@ -10,16 +11,16 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
-public class WebDriverInitializer implements WebDriverFactory {
+class WebDriverInitializer implements WebDriverFactory {
 
 
     private final ProxyConfigHolder proxyConfigHolder;
     private final WebDriverConfig webDriverConfig;
 
 
-    public WebDriverInitializer(ProxyConfigHolder proxyConfigHolder, WebDriverConfig webDriverConfig) {
-        this.proxyConfigHolder = proxyConfigHolder;
-        this.webDriverConfig = webDriverConfig;
+    public WebDriverInitializer(ConfigHolder configHolder) {
+        this.proxyConfigHolder = configHolder.getProxyConfigHolder();
+        this.webDriverConfig = configHolder.getWebDriverConfig();
     }
 
 

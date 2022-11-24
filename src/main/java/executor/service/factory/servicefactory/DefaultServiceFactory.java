@@ -2,7 +2,7 @@ package executor.service.factory.servicefactory;
 
 import executor.service.config.ApplicationConfig;
 import executor.service.config.ConfigHolder;
-import executor.service.factory.webdriver.WebDriverInitializer;
+import executor.service.factory.webdriver.DefaultWebDriverFactory;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Constructor;
@@ -17,9 +17,7 @@ public class DefaultServiceFactory implements ServiceFactory {
     private final ConfigHolder configHolder = new ConfigHolder();
     private final ApplicationConfig config = new ApplicationConfig(
             configHolder,
-            new WebDriverInitializer(
-                    configHolder.getProxyConfigHolder(),
-                    configHolder.getWebDriverConfig()));
+            new DefaultWebDriverFactory(configHolder));
 
     @Override
     public <T> T create(Class<T> clazz) {
