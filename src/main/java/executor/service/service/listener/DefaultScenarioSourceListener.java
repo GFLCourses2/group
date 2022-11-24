@@ -1,28 +1,26 @@
 package executor.service.service.listener;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import executor.service.config.ConfigHolder;
 import executor.service.model.Scenario;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 
 public class DefaultScenarioSourceListener implements ScenarioSourceListener {
 
-    @Override
-    public Collection<Scenario> readScenarios(File source) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(
-                source,
-                mapper.getTypeFactory().constructCollectionType(Collection.class, Scenario.class)
-        );
+    private final ObjectMapper mapper;
+    private final ConfigHolder configHolder;
+
+    public DefaultScenarioSourceListener(ObjectMapper mapper, ConfigHolder configHolder) {
+        this.mapper = mapper;
+        this.configHolder = configHolder;
     }
 
     @Override
-    public void appendScenarios(File source, Collection<Scenario> scenarios) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
+    public void appendScenarios(Collection<Scenario> scenarios) throws IOException {
         Collection<Scenario> read = mapper.readValue(
-                source,
+                configHolder.getScenarioFile(),
                 mapper.getTypeFactory().constructCollectionType(Collection.class, Scenario.class)
         );
 

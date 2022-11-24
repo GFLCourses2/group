@@ -1,5 +1,7 @@
 package executor.service.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import executor.service.config.ConfigHolder;
 import executor.service.model.Scenario;
 import executor.service.model.Step;
 import executor.service.service.listener.DefaultScenarioSourceListener;
@@ -7,7 +9,6 @@ import executor.service.service.listener.ScenarioSourceListener;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,22 +21,11 @@ import static org.junit.Assert.assertArrayEquals;
 
 public class DefaultScenarioSourceListenerTest {
 
-    private static final File testFile = new File("testScenarios.json");
-
     private ScenarioSourceListener sourceListener;
 
     @Before
     public void setUp() {
-        sourceListener = new DefaultScenarioSourceListener();
-    }
-
-    @Test
-    public void testReadScenarios() throws IOException {
-        Collection<Scenario> expected = createScenariosLikeInFile();
-
-        assertArrayEquals(
-                expected.toArray(new Scenario[0]),
-                sourceListener.readScenarios(testFile).toArray(new Scenario[0]));
+        sourceListener = new DefaultScenarioSourceListener(new ObjectMapper(), new ConfigHolder());
     }
 
     @Test
@@ -44,8 +34,8 @@ public class DefaultScenarioSourceListenerTest {
         expected.addAll(createScenariosLikeInFile());
         Collection<Scenario> actual = new LinkedBlockingQueue<>();
 
-        sourceListener.appendScenarios(testFile, actual);
-        sourceListener.appendScenarios(testFile, actual);
+        sourceListener.appendScenarios(actual);
+        sourceListener.appendScenarios(actual);
 
         assertArrayEquals(
                 expected.toArray(new Scenario[0]), actual.toArray(new Scenario[0]));
