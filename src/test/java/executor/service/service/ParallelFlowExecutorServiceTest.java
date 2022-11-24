@@ -24,7 +24,7 @@ public class ParallelFlowExecutorServiceTest {
     @Test
     public void testMethodExecuteParallelExecutorService() {
         try {
-            parallelExecutorService.run();
+
         } finally {
             webDriver.quit();
         }

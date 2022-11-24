@@ -32,7 +32,6 @@ public class Worker extends Thread {
 
         while (!exit) {
             try {
-                System.out.println(this.getName() + " - working");
                 Scenario scenario = scenarioQueue.poll();
                 if (scenario == null) {
                     TimeUnit.MILLISECONDS.sleep(2000);

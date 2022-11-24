@@ -49,7 +49,7 @@ public class ConfigHolderTest {
     @Test
     public void checkFieldsThreadPoolConfigReceivedFromFile() {
         Long keepAliveTime = 3L;
-        Integer corePoolSize = 1;
+        Integer corePoolSize = 6;
 
         Assert.assertEquals(keepAliveTime, threadPoolConfig.getKeepAliveTime());
         Assert.assertEquals(corePoolSize, threadPoolConfig.getCorePoolSize());
