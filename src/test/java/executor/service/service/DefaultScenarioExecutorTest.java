@@ -5,6 +5,7 @@ import executor.service.factory.servicefactory.ServiceFactory;
 import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.model.Scenario;
 import executor.service.model.Step;
+import executor.service.service.execution.executionservice.DefaultScenarioExecutor;
 import executor.service.service.execution.executionservice.ScenarioExecutor;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,16 +14,20 @@ import org.openqa.selenium.WebDriver;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.times;
+
 public class DefaultScenarioExecutorTest {
     private WebDriverFactory webDriverFactory;
-    private ScenarioExecutor scenarioExecutor;
+    private DefaultScenarioExecutor scenarioExecutor;
     private Scenario scenario;
 
     @Before
     public void setUp() {
         ServiceFactory factory = new DefaultServiceFactory();
         webDriverFactory = factory.create(WebDriverFactory.class);
-        scenarioExecutor = factory.create(ScenarioExecutor.class);
+        scenarioExecutor = factory.create(DefaultScenarioExecutor.class);
         List<Step> steps = new ArrayList<>();
         steps.add(new Step("clickcss",
                 "#h\\.e02b498c978340a_122 > div > div > p:nth-child(2) > span:nth-child(2) > a"));
@@ -35,7 +40,9 @@ public class DefaultScenarioExecutorTest {
     @Test
     public void execute() throws InterruptedException {
         WebDriver webDriver = webDriverFactory.create();
-        scenarioExecutor.execute(scenario, webDriver);
+        Runnable runnable = mock(Runnable.class);
+        scenarioExecutor.executeWithCallback(scenario, webDriver,runnable);
+        verify(runnable,times(4)).run();
         webDriver.quit();
     }
 }
