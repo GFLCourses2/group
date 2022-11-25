@@ -29,7 +29,8 @@ public class DefaultProxySourcesClient implements ProxySourcesClient {
         int minLength = Math.min(proxyCredentials.length, proxyNetworkConfigs.length);
 
         for (int i = 0; i < minLength; i++) {
-            result.add(new ProxyConfigHolder(proxyNetworkConfigs[i], proxyCredentials[i]));
+            ProxyConfigHolder proxyConfigHolder = new ProxyConfigHolder(proxyNetworkConfigs[i], proxyCredentials[i]);
+            result.add(proxyConfigHolder);
         }
 
         return result.get(0);
