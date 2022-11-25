@@ -2,7 +2,6 @@ package executor.service.service.listener;
 
 import executor.service.model.Scenario;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 

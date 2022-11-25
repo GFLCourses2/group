@@ -2,7 +2,6 @@ package executor.service.config;
 
 import executor.service.model.ThreadPoolConfig;
 import executor.service.model.WebDriverConfig;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

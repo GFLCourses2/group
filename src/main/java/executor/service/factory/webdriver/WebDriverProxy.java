@@ -16,7 +16,6 @@ public class WebDriverProxy implements WebDriver {
     }
 
 
-
     private void init() {
         if (webDriver == null)
             webDriver = factory.create();

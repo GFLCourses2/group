@@ -8,7 +8,10 @@ import executor.service.service.listener.ScenarioSourceListener;
 
 import java.io.IOException;
 import java.util.Queue;
-import java.util.concurrent.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class ParallelFlowExecutorService {
 
@@ -48,7 +51,6 @@ public class ParallelFlowExecutorService {
             threadPoolExecutor.execute(new Worker(scenarioQueue, scenarioExecutor, webDriverFactory, countDownLatch));
         }
     }
-
 
 
     private void startListener() {

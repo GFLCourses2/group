@@ -4,7 +4,6 @@ import executor.service.factory.servicefactory.DefaultServiceFactory;
 import executor.service.factory.servicefactory.ServiceFactory;
 import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.service.execution.executionservice.ParallelFlowExecutorService;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;

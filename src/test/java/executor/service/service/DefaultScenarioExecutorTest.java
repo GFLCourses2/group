@@ -6,7 +6,6 @@ import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.model.Scenario;
 import executor.service.model.Step;
 import executor.service.service.execution.executionservice.DefaultScenarioExecutor;
-import executor.service.service.execution.executionservice.ScenarioExecutor;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -14,9 +13,7 @@ import org.openqa.selenium.WebDriver;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.*;
 
 public class DefaultScenarioExecutorTest {
     private WebDriverFactory webDriverFactory;
@@ -38,11 +35,11 @@ public class DefaultScenarioExecutorTest {
     }
 
     @Test
-    public void execute() throws InterruptedException {
+    public void execute() {
         WebDriver webDriver = webDriverFactory.create();
         Runnable runnable = mock(Runnable.class);
-        scenarioExecutor.executeWithCallback(scenario, webDriver,runnable);
-        verify(runnable,times(4)).run();
+        scenarioExecutor.executeWithCallback(scenario, webDriver, runnable);
+        verify(runnable, times(4)).run();
         webDriver.quit();
     }
 }

@@ -1,12 +1,9 @@
 package executor.service.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import executor.service.config.ConfigHolder;
 import executor.service.factory.servicefactory.DefaultServiceFactory;
 import executor.service.factory.servicefactory.ServiceFactory;
 import executor.service.model.Scenario;
 import executor.service.model.Step;
-import executor.service.service.listener.DefaultScenarioSourceListener;
 import executor.service.service.listener.ScenarioSourceListener;
 import org.junit.Before;
 import org.junit.Test;
