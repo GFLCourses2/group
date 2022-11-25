@@ -22,15 +22,24 @@ public class DefaultScenarioExecutor implements ScenarioExecutor {
     }
 
     @Override
-    public void execute(Scenario scenario, WebDriver webDriver) {
+    public void execute(Scenario scenario, WebDriver webDriver, Runnable callback) {
         webDriver.get(scenario.getSite());
         List<Step> steps = scenario.getSteps();
         for (Step step : steps) {
             if ("clickcss".equalsIgnoreCase(step.getAction())) {
+                if(callback != null){
+                    callback.run();
+                }
                 clickCss.step(webDriver, step);
             } else if ("clickXpath".equalsIgnoreCase(step.getAction())) {
+                if(callback != null){
+                    callback.run();
+                }
                 clickXpath.step(webDriver, step);
             } else if ("sleep".equalsIgnoreCase(step.getAction())) {
+                if(callback != null){
+                    callback.run();
+                }
                 sleep.step(webDriver, step);
             }
         }

@@ -13,6 +13,10 @@ import org.openqa.selenium.WebDriver;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.times;
+
 public class DefaultScenarioExecutorTest {
     private WebDriverFactory webDriverFactory;
     private ScenarioExecutor scenarioExecutor;
@@ -35,7 +39,9 @@ public class DefaultScenarioExecutorTest {
     @Test
     public void execute() throws InterruptedException {
         WebDriver webDriver = webDriverFactory.create();
-        scenarioExecutor.execute(scenario, webDriver);
+        Runnable runnable = mock(Runnable.class);
+        scenarioExecutor.execute(scenario, webDriver, runnable);
+        verify(runnable,times(4)).run();
         webDriver.quit();
     }
 }

@@ -37,7 +37,7 @@ public class Worker extends Thread {
                     TimeUnit.MILLISECONDS.sleep(2000);
                     continue;
                 }
-                scenarioExecutor.execute(scenario, webDriverFactory.create());
+                scenarioExecutor.execute(scenario, webDriverFactory.create(),null);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
