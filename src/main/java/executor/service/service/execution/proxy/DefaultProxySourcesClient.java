@@ -16,9 +16,9 @@ import java.util.List;
 public class DefaultProxySourcesClient implements ProxySourcesClient {
     private static List<ProxyConfigHolder> result;
     private int givenProxyConfigHolder;
+    private final ObjectMapper objectMapper;
     private final File credentials;
     private final File networkConfig;
-    private ObjectMapper objectMapper;
 
 
     public DefaultProxySourcesClient(ObjectMapper objectMapper, ConfigHolder configHolder) {
