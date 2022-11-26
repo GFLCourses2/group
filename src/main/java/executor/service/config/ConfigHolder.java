@@ -19,6 +19,9 @@ public class ConfigHolder {
 
     private final Path threadPoolConfigPath = Paths.get("src/main/java/resources/threadPoolConfig.properties");
 
+    private final File proxyCredentialsFile = new File ("ProxyCredentials.json");
+    private final File proxyNetworkFile = new File ("ProxyNetwork.json");
+
     private final File scenarioFile = new File("testScenarios.json");
 
     private final ProxyConfigHolder proxyConfigHolder;
@@ -60,6 +63,14 @@ public class ConfigHolder {
 
     public WebDriverConfig getWebDriverConfig() {
         return webDriverConfig;
+    }
+
+    public File getProxyCredentialsFile() {
+        return proxyCredentialsFile;
+    }
+
+    public File getProxyNetworkFile() {
+        return proxyNetworkFile;
     }
 
     private WebDriverConfig readWebDriverConfig() {
