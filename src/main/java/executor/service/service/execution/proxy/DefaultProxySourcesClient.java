@@ -1,6 +1,6 @@
 package executor.service.service.execution.proxy;
 
-import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import executor.service.model.ProxyConfigHolder;
 import executor.service.model.ProxyCredentials;
@@ -16,6 +16,8 @@ public class DefaultProxySourcesClient implements ProxySourcesClient {
     private final File credentials;
     private final File networkConfig;
 
+    private static ObjectMapper objectMapper = new ObjectMapper();
+
     public DefaultProxySourcesClient(File credentials, File networkConfig) {
         this.credentials = credentials;
         this.networkConfig = networkConfig;
@@ -29,30 +31,20 @@ public class DefaultProxySourcesClient implements ProxySourcesClient {
         int minLength = Math.min(proxyCredentials.length, proxyNetworkConfigs.length);
 
         for (int i = 0; i < minLength; i++) {
-            result.add(new ProxyConfigHolder(proxyNetworkConfigs[i], proxyCredentials[i]));
+            ProxyConfigHolder proxyConfigHolder = new ProxyConfigHolder(proxyNetworkConfigs[i], proxyCredentials[i]);
+            result.add(proxyConfigHolder);
         }
 
         return result.get(0);
     }
 
     private ProxyCredentials[] getCredentials() throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.readValue(credentials, ProxyCredentials[].class);
-        } catch (DatabindException de) {
-            System.out.println(de.getMessage());
-            List<ProxyCredentials> cr = objectMapper.readValue(credentials, objectMapper.getTypeFactory().constructCollectionType(List.class, ProxyCredentials.class));
-            return cr.toArray(new ProxyCredentials[0]);
-        }
+        TypeReference<ProxyCredentials[]> typeReference = new TypeReference<ProxyCredentials[]>() {};
+        return objectMapper.readValue(credentials,typeReference);
     }
 
     private ProxyNetworkConfig[] getNetworkConfigs() throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            return mapper.readValue(networkConfig, ProxyNetworkConfig[].class);
-        } catch (DatabindException de) {
-            List<ProxyNetworkConfig> ch = mapper.readValue(networkConfig, mapper.getTypeFactory().constructCollectionType(List.class, ProxyNetworkConfig.class));
-            return ch.toArray(new ProxyNetworkConfig[0]);
-        }
+        TypeReference<ProxyNetworkConfig[]> typeReference = new TypeReference<ProxyNetworkConfig[]>() {};
+        return objectMapper.readValue(networkConfig,typeReference);
     }
 }
