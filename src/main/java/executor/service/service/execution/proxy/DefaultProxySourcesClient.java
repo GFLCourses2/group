@@ -2,6 +2,7 @@ package executor.service.service.execution.proxy;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import executor.service.config.ConfigHolder;
 import executor.service.model.ProxyConfigHolder;
 import executor.service.model.ProxyCredentials;
 import executor.service.model.ProxyNetworkConfig;
@@ -13,38 +14,52 @@ import java.util.List;
 
 
 public class DefaultProxySourcesClient implements ProxySourcesClient {
+    private static List<ProxyConfigHolder> result;
+    private int givenProxyConfigHolder;
     private final File credentials;
     private final File networkConfig;
+    private ObjectMapper objectMapper;
 
-    private static ObjectMapper objectMapper = new ObjectMapper();
 
-    public DefaultProxySourcesClient(File credentials, File networkConfig) {
-        this.credentials = credentials;
-        this.networkConfig = networkConfig;
+    public DefaultProxySourcesClient(ObjectMapper objectMapper, ConfigHolder configHolder) {
+        this.objectMapper = objectMapper;
+        this.credentials = configHolder.getProxyCredentialsFile();
+        this.networkConfig = configHolder.getProxyNetworkFile();
     }
 
     @Override
     public ProxyConfigHolder getProxy() throws IOException {
-        List<ProxyConfigHolder> result = new ArrayList<>();
-        ProxyCredentials[] proxyCredentials = getCredentials();
-        ProxyNetworkConfig[] proxyNetworkConfigs = getNetworkConfigs();
-        int minLength = Math.min(proxyCredentials.length, proxyNetworkConfigs.length);
-
-        for (int i = 0; i < minLength; i++) {
-            ProxyConfigHolder proxyConfigHolder = new ProxyConfigHolder(proxyNetworkConfigs[i], proxyCredentials[i]);
-            result.add(proxyConfigHolder);
+        if (result == null){
+            result = new ArrayList<>();
+            givenProxyConfigHolder = 0;
         }
 
-        return result.get(0);
+        readProxyCredentialsAndNetworkConfigs();
+
+        ProxyConfigHolder tempProxyConfigHolder = result.get(givenProxyConfigHolder);
+        givenProxyConfigHolder++;
+
+        return tempProxyConfigHolder;
     }
 
-    private ProxyCredentials[] getCredentials() throws IOException {
-        TypeReference<ProxyCredentials[]> typeReference = new TypeReference<ProxyCredentials[]>() {};
+    private void readProxyCredentialsAndNetworkConfigs() throws IOException {
+        List<ProxyCredentials> proxyCredentials = getCredentials();
+        List<ProxyNetworkConfig> proxyNetworkConfigs = getNetworkConfigs();
+        int minLength = Math.min(proxyCredentials.size(), proxyNetworkConfigs.size());
+
+        for (int i = 0; i < minLength; i++) {
+            ProxyConfigHolder proxyConfigHolder = new ProxyConfigHolder(proxyNetworkConfigs.get(i),proxyCredentials.get(i));
+            result.add(proxyConfigHolder);
+        }
+    }
+
+    private List<ProxyCredentials> getCredentials() throws IOException {
+        TypeReference<List<ProxyCredentials>> typeReference = new TypeReference<List<ProxyCredentials>>() {};
         return objectMapper.readValue(credentials,typeReference);
     }
 
-    private ProxyNetworkConfig[] getNetworkConfigs() throws IOException {
-        TypeReference<ProxyNetworkConfig[]> typeReference = new TypeReference<ProxyNetworkConfig[]>() {};
+    private List<ProxyNetworkConfig> getNetworkConfigs() throws IOException {
+        TypeReference<List<ProxyNetworkConfig>> typeReference = new TypeReference<List<ProxyNetworkConfig>>() {};
         return objectMapper.readValue(networkConfig,typeReference);
     }
 }
