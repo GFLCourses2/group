@@ -35,6 +35,10 @@ public class DefaultProxySourcesClient implements ProxySourcesClient {
             readProxyCredentialsAndNetworkConfigs();
         }
 
+        if (givenProxyConfigHolder == result.size()) {
+            givenProxyConfigHolder = 0;
+        }
+
         ProxyConfigHolder tempProxyConfigHolder = result.get(givenProxyConfigHolder);
         givenProxyConfigHolder++;
 
