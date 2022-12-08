@@ -5,6 +5,8 @@ import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.model.Scenario;
 import executor.service.service.execution.executionservice.worker.Worker;
 import executor.service.service.listener.ScenarioSourceListener;
+import jakarta.annotation.PostConstruct;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,20 +22,23 @@ public class ParallelFlowExecutorService {
     private final ScenarioExecutor scenarioExecutor;
     private final ScenarioSourceListener scenarioListener;
     private final WebDriverFactory webDriverFactory;
-    private final ThreadPoolExecutor threadPoolExecutor;
+    private ThreadPoolExecutor threadPoolExecutor;
 
-    private final CountDownLatch countDownLatch;
+    private CountDownLatch countDownLatch;
     private final Queue<Scenario> scenarioQueue = new LinkedBlockingQueue<>();
 
-    public ParallelFlowExecutorService(ConfigHolder configHolder,
-                                       ScenarioExecutor scenarioExecutor,
+    public ParallelFlowExecutorService(ScenarioExecutor scenarioExecutor,
                                        ScenarioSourceListener scenarioListener,
                                        WebDriverFactory webDriverFactory) {
         this.scenarioExecutor = scenarioExecutor;
         this.scenarioListener = scenarioListener;
         this.webDriverFactory = webDriverFactory;
-        this.threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(configHolder.getThreadPoolConfig().getCorePoolSize());
-        this.countDownLatch = new CountDownLatch(configHolder.getThreadPoolConfig().getCorePoolSize() + 1);
+    }
+
+    @PostConstruct
+    private void postConstruct(ConfigHolder configHolder){
+        threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(configHolder.getThreadPoolConfig().getCorePoolSize());
+        countDownLatch = new CountDownLatch(configHolder.getThreadPoolConfig().getCorePoolSize() + 1);
     }
 
     public void run() {
