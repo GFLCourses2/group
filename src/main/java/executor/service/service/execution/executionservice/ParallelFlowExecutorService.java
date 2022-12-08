@@ -6,7 +6,6 @@ import executor.service.model.Scenario;
 import executor.service.service.execution.executionservice.worker.Worker;
 import executor.service.service.listener.ScenarioSourceListener;
 import jakarta.annotation.PostConstruct;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -25,7 +24,7 @@ public class ParallelFlowExecutorService {
     private ThreadPoolExecutor threadPoolExecutor;
 
     private CountDownLatch countDownLatch;
-    private final Queue<Scenario> scenarioQueue = new LinkedBlockingQueue<>();
+    private Queue<Scenario> scenarioQueue;
 
     public ParallelFlowExecutorService(ScenarioExecutor scenarioExecutor,
                                        ScenarioSourceListener scenarioListener,
@@ -36,9 +35,10 @@ public class ParallelFlowExecutorService {
     }
 
     @PostConstruct
-    private void postConstruct(ConfigHolder configHolder){
+    private void postConstruct(ConfigHolder configHolder) {
         threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(configHolder.getThreadPoolConfig().getCorePoolSize());
         countDownLatch = new CountDownLatch(configHolder.getThreadPoolConfig().getCorePoolSize() + 1);
+        scenarioQueue = new LinkedBlockingQueue<>();
     }
 
     public void run() {
@@ -55,7 +55,11 @@ public class ParallelFlowExecutorService {
 
     private void startWorkers(ThreadPoolExecutor threadPoolExecutor) {
         for (int i = 0; i < threadPoolExecutor.getCorePoolSize(); i++) {
-            threadPoolExecutor.execute(new Worker(scenarioQueue, scenarioExecutor, webDriverFactory, countDownLatch));
+            threadPoolExecutor.execute(new Worker(
+                    scenarioQueue,
+                    scenarioExecutor,
+                    webDriverFactory,
+                    countDownLatch));
         }
     }
 
