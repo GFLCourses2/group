@@ -5,6 +5,7 @@ import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.model.Scenario;
 import executor.service.service.execution.executionservice.worker.Worker;
 import executor.service.service.listener.ScenarioSourceListener;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Queue;
@@ -13,6 +14,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 
+@Service
 public class ParallelFlowExecutorService {
 
     private final ScenarioExecutor scenarioExecutor;
