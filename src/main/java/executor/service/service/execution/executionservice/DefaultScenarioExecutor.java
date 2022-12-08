@@ -5,21 +5,18 @@ import executor.service.model.Step;
 import executor.service.service.execution.stepexecution.ClickCss;
 import executor.service.service.execution.stepexecution.ClickXpath;
 import executor.service.service.execution.stepexecution.Sleep;
+import lombok.AllArgsConstructor;
 import org.openqa.selenium.WebDriver;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@AllArgsConstructor
 public class DefaultScenarioExecutor implements ScenarioExecutor {
     private final ClickXpath clickXpath;
     private final ClickCss clickCss;
     private final Sleep sleep;
-
-
-    public DefaultScenarioExecutor(ClickXpath clickXpath, ClickCss clickCss, Sleep sleep) {
-        this.clickXpath = clickXpath;
-        this.clickCss = clickCss;
-        this.sleep = sleep;
-    }
 
     @Override
     public void execute(Scenario scenario, WebDriver webDriver) {
