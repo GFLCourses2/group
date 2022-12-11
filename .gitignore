@@ -30,4 +30,4 @@ hs_err_pid*
 executor-service.iml
 
 # driver
-/src/main/java/resources/chromedriver
+/src/main/resources/chromedriver.exe

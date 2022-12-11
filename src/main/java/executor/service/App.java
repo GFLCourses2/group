@@ -9,7 +9,7 @@ public class App {
         try {
             SpringApplication.run(App.class, args);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 }

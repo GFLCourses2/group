@@ -1,11 +1,12 @@
 package executor.service.service.execution.executionservice;
 
-import executor.service.config.ConfigHolder;
+import executor.service.config.ThreadPoolConfig;
 import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.model.Scenario;
 import executor.service.service.execution.executionservice.worker.Worker;
 import executor.service.service.listener.ScenarioSourceListener;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -21,6 +22,7 @@ public class ParallelFlowExecutorService {
     private final ScenarioExecutor scenarioExecutor;
     private final ScenarioSourceListener scenarioListener;
     private final WebDriverFactory webDriverFactory;
+    private final ThreadPoolConfig threadPoolConfig;
     private ThreadPoolExecutor threadPoolExecutor;
 
     private CountDownLatch countDownLatch;
@@ -28,16 +30,18 @@ public class ParallelFlowExecutorService {
 
     public ParallelFlowExecutorService(ScenarioExecutor scenarioExecutor,
                                        ScenarioSourceListener scenarioListener,
-                                       WebDriverFactory webDriverFactory) {
+                                       ThreadPoolConfig threadPoolConfig,
+                                       @Qualifier("webDriverFactoryProxy") WebDriverFactory webDriverFactory) {
         this.scenarioExecutor = scenarioExecutor;
         this.scenarioListener = scenarioListener;
         this.webDriverFactory = webDriverFactory;
+        this.threadPoolConfig = threadPoolConfig;
     }
 
     @PostConstruct
-    private void postConstruct(ConfigHolder configHolder) {
-        threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(configHolder.getThreadPoolConfig().getCorePoolSize());
-        countDownLatch = new CountDownLatch(configHolder.getThreadPoolConfig().getCorePoolSize() + 1);
+    private void postConstruct() {
+        threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(threadPoolConfig.getCorePoolSize());
+        countDownLatch = new CountDownLatch(threadPoolConfig.getCorePoolSize() + 1);
         scenarioQueue = new LinkedBlockingQueue<>();
     }
 

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 
 
 @Configuration
-@PropertySource("classpath:/resources/threadPoolConfig.properties")
+@PropertySource("classpath:/threadPoolConfig.properties")
 @Data
 public class ThreadPoolConfig {
     @Value("${executorservice.common.corePoolSize}")

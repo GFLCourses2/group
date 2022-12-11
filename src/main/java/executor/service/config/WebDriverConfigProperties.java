@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource("classpath:/resources/webDriverConfig.properties")
+@PropertySource("classpath:webDriverConfig.properties")
 @Data
-public class WebDriverConfig {
+public class WebDriverConfigProperties {
 
     @Value("${executorservice.common.webDriverExecutable}")
     private String webDriverExecutable;
