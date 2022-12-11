@@ -1,34 +1,18 @@
 package executor.service.config;
 
-import jakarta.annotation.PostConstruct;
 import lombok.Data;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
-import java.util.Properties;
 
-import static executor.utils.PropertiesHelper.*;
-
-@Component(ThreadPoolConfig.BEAN_NAME)
+@Configuration
+@PropertySource("classpath:/resources/threadPoolConfig.properties")
 @Data
 public class ThreadPoolConfig {
-    public static final String BEAN_NAME = "properties_ThreadPoolConfig";
-
-    private static final String CONFIG_PATH = "src/main/java/resources/threadPoolConfig.properties";
-
-    private static final String POOL_SIZE_KEY = "executorservice.common.corePoolSize";
-    private static final String ALIVE_TIME_KEY = "executorservice.common.keepAliveTime";
-
-    private static final int POOL_SIZE_DEF_VALUE = 1;
-    private static final long ALIVE_TIME_DEF_VALUE = 3L;
-
+    @Value("${executorservice.common.corePoolSize}")
     private Integer corePoolSize;
+
+    @Value("${executorservice.common.keepAliveTime}")
     private Long keepAliveTime;
-
-    @PostConstruct
-    private void init() {
-        Properties properties = readProperties(CONFIG_PATH);
-
-        this.corePoolSize = getPropertyIntValue(properties, POOL_SIZE_KEY, POOL_SIZE_DEF_VALUE);
-        this.keepAliveTime = getPropertyLongValue(properties, ALIVE_TIME_KEY, ALIVE_TIME_DEF_VALUE);
-    }
 }
