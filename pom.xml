@@ -98,6 +98,5 @@
             <version>${maven-assembly-plugin-version}</version>
         </dependency>
 
-
     </dependencies>
 </project>
