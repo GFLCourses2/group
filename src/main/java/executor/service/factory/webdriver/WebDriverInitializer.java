@@ -7,6 +7,7 @@ import executor.service.model.ProxyNetworkConfig;
 import executor.service.service.execution.proxy.ProxySourcesClient;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -36,7 +37,6 @@ public class WebDriverInitializer implements WebDriverFactory {
     public WebDriver create() {
         ChromeOptions chromeOptions = new ChromeOptions();
         setOptions(chromeOptions, proxySourcesClient.getProxy(), webDriverConfig);
-
         return new ChromeDriver(chromeOptions);
     }
 
@@ -44,8 +44,7 @@ public class WebDriverInitializer implements WebDriverFactory {
                             ProxyConfigHolder proxyConfigHolder,
                             WebDriverConfigProperties webDriverConfig) {
         setWebDriverConfig(chromeOptions, webDriverConfig);
-
-        //setProxy(chromeOptions, proxyConfigHolder);
+        setProxy(chromeOptions, proxyConfigHolder);
     }
 
     private void setWebDriverConfig(ChromeOptions chromeOptions, WebDriverConfigProperties webDriverConfig) {
@@ -55,14 +54,12 @@ public class WebDriverInitializer implements WebDriverFactory {
     }
 
     private void setProxy(ChromeOptions chromeOptions, ProxyConfigHolder proxyConfigHolder) {
-        ProxyCredentials credentials = proxyConfigHolder.getProxyCredentials();
         ProxyNetworkConfig networkConfig = proxyConfigHolder.getProxyNetworkConfig();
-        String proxyUrl =
-                credentials.getUsername() + ":" + credentials.getPassword() +
-                        "@" +
-                        networkConfig.getHostName() + ":" + networkConfig.getPort();
-
-        chromeOptions.addArguments("--proxy-server=http://" + proxyUrl);
+        String url = networkConfig.getHostName() + ':' + networkConfig.getPort();
+        Proxy proxy = new Proxy();
+        proxy.setHttpProxy(url);
+        proxy.setSslProxy(url);
+        chromeOptions.setProxy(proxy);
     }
 
 }
