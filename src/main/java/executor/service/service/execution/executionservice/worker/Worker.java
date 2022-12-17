@@ -3,14 +3,15 @@ package executor.service.service.execution.executionservice.worker;
 import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.model.Scenario;
 import executor.service.service.execution.executionservice.ScenarioExecutor;
+import executor.service.service.holder.ScenarioHolder;
 
-import java.util.Queue;
+import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 public class Worker extends Thread {
 
-    private final Queue<Scenario> scenarioQueue;
+    private final ScenarioHolder scenarioHolder;
 
     private final ScenarioExecutor scenarioExecutor;
 
@@ -19,9 +20,9 @@ public class Worker extends Thread {
     private final CountDownLatch countDownLatch;
     private boolean exit = false;
 
-    public Worker(Queue<Scenario> scenarioQueue, ScenarioExecutor scenarioExecutor,
+    public Worker(ScenarioHolder scenarioHolder, ScenarioExecutor scenarioExecutor,
                   WebDriverFactory webDriverFactory, CountDownLatch countDownLatch) {
-        this.scenarioQueue = scenarioQueue;
+        this.scenarioHolder = scenarioHolder;
         this.scenarioExecutor = scenarioExecutor;
         this.webDriverFactory = webDriverFactory;
         this.countDownLatch = countDownLatch;
@@ -32,11 +33,12 @@ public class Worker extends Thread {
 
         while (!exit) {
             try {
-                Scenario scenario = scenarioQueue.poll();
-                if (scenario == null) {
+                Optional<Scenario> scenarioOptional = scenarioHolder.getScenario();
+                if (!scenarioOptional.isPresent()) {
                     TimeUnit.MILLISECONDS.sleep(2000);
                     continue;
                 }
+                Scenario scenario = scenarioOptional.get();
                 scenarioExecutor.execute(scenario, webDriverFactory.create());
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
