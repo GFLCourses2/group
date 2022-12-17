@@ -20,10 +20,8 @@ import java.time.Duration;
 @AllArgsConstructor
 public class WebDriverInitializer implements WebDriverFactory {
 
-
     private final ProxySourcesClient proxySourcesClient;
     private final WebDriverConfigProperties webDriverConfig;
-
 
     @PostConstruct
     private void initWebDriverExecutable() {

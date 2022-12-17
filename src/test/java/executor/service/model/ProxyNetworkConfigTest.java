@@ -49,10 +49,7 @@ public class ProxyNetworkConfigTest {
     @Test
     public void testToString() {
         createObjects();
-        String expected = "{" + "\"hostname\":\""
-                + "geekforless.com.ua"
-                + "\"," + "\"port\":"
-                + 8081 + "}";
+        String expected = "ProxyNetworkConfig(hostName=geekforless.com.ua, port=8081)";
         assertEquals(expected, proxyNetworkConfig1.toString());
     }
 }
