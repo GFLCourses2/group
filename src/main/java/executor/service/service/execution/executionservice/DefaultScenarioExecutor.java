@@ -1,13 +1,11 @@
 package executor.service.service.execution.executionservice;
 
-import executor.service.model.ProxyCredentials;
 import executor.service.model.Scenario;
 import executor.service.model.Step;
 import executor.service.service.execution.stepexecution.ClickCss;
 import executor.service.service.execution.stepexecution.ClickXpath;
 import executor.service.service.execution.stepexecution.Sleep;
 import lombok.AllArgsConstructor;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.springframework.stereotype.Service;
 

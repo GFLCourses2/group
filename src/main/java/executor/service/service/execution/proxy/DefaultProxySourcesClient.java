@@ -15,10 +15,10 @@ import java.util.List;
 @Service
 public class DefaultProxySourcesClient implements ProxySourcesClient {
     private static List<ProxyConfigHolder> result;
-    private int givenProxyConfigHolder;
     private final ObjectMapper objectMapper;
     private final File credentials = new File("ProxyCredentials.json");
     private final File networkConfig = new File("ProxyNetwork.json");
+    private int givenProxyConfigHolder;
 
     public DefaultProxySourcesClient(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;

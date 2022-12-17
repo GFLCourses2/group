@@ -1,7 +1,6 @@
 package executor.service.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import executor.service.model.Scenario;
 import executor.service.model.Step;
 import executor.service.service.listener.DefaultScenarioSourceListener;

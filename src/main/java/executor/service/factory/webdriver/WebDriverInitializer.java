@@ -2,7 +2,6 @@ package executor.service.factory.webdriver;
 
 import executor.service.config.WebDriverConfigProperties;
 import executor.service.model.ProxyConfigHolder;
-import executor.service.model.ProxyCredentials;
 import executor.service.model.ProxyNetworkConfig;
 import executor.service.service.execution.proxy.ProxySourcesClient;
 import jakarta.annotation.PostConstruct;

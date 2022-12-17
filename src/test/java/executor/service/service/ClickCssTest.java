@@ -3,7 +3,6 @@ package executor.service.service;
 import executor.service.model.Step;
 import executor.service.service.execution.stepexecution.ClickCss;
 import executor.service.service.execution.stepexecution.StepExecution;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class ClickCssTest {
 
     private StepExecution stepExecution;
-    private WebDriverForTests webDriverForTests = new WebDriverForTests();
+    private final WebDriverForTests webDriverForTests = new WebDriverForTests();
 
     @Before
     public void setUp() {
@@ -30,7 +29,7 @@ public class ClickCssTest {
     @Test
     public void step() throws InterruptedException {
         WebDriver webDriver = webDriverForTests.getWebDriver();
-        Step step = new Step("сlickсss","body > div > div.td-main > div > main > nav > ol > li:nth-child(1) > a");
+        Step step = new Step("сlickсss", "body > div > div.td-main > div > main > nav > ol > li:nth-child(1) > a");
 
         webDriver.get("https://www.selenium.dev/documentation/webdriver/");
         TimeUnit.SECONDS.sleep(3L);

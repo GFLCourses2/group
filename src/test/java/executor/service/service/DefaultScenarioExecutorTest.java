@@ -6,10 +6,8 @@ import executor.service.service.execution.executionservice.DefaultScenarioExecut
 import executor.service.service.execution.stepexecution.ClickCss;
 import executor.service.service.execution.stepexecution.ClickXpath;
 import executor.service.service.execution.stepexecution.Sleep;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
@@ -19,7 +17,7 @@ import static org.mockito.Mockito.*;
 
 public class DefaultScenarioExecutorTest {
 
-    private WebDriverForTests webDriverForTests = new WebDriverForTests();
+    private final WebDriverForTests webDriverForTests = new WebDriverForTests();
     private DefaultScenarioExecutor scenarioExecutor;
     private Scenario scenario;
 

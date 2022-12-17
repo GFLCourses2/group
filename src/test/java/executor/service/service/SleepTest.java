@@ -3,7 +3,6 @@ package executor.service.service;
 import executor.service.model.Step;
 import executor.service.service.execution.stepexecution.Sleep;
 import executor.service.service.execution.stepexecution.StepExecution;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 
 public class SleepTest {
 
-    private WebDriverForTests webDriverForTests = new WebDriverForTests();
+    private final WebDriverForTests webDriverForTests = new WebDriverForTests();
     private StepExecution stepSleep;
 
     @Before

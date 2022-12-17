@@ -1,7 +1,7 @@
 package executor.service.config;
 
-import executor.service.factory.webdriver.WebDriverFactoryProxy;
 import executor.service.factory.webdriver.WebDriverFactory;
+import executor.service.factory.webdriver.WebDriverFactoryProxy;
 import executor.service.factory.webdriver.WebDriverInitializer;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Qualifier;
