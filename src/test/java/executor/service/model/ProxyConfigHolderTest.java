@@ -27,10 +27,8 @@ public class ProxyConfigHolderTest {
 
     @Test
     public void testToString() {
-        String expected = '{' +
-                "\"proxyNetworkConfig\"" + ':' + '\"' + "{" + "\"hostname\":\"" + "TestHost" + "\"," + "\"port\":" + 1 + "}" + '\"' + ',' +
-                "\"proxyCredentials\"" + ':' + '\"' + "{" + "\"username\":" + '\"' + "TestName" + '\"' +
-                ",\"password\":" + '\"' + "TestPassword" + '\"' + '}' + '\"' + '}';
+        String expected = "ProxyConfigHolder(proxyNetworkConfig=ProxyNetworkConfig(hostName=TestHost, port=1), " +
+                "proxyCredentials=ProxyCredentials(username=TestName, password=TestPassword))";
         ProxyConfigHolder proxyConfHolder1 = new ProxyConfigHolder(proxyNetworkConfig, proxyCredentials);
         assertEquals(expected, proxyConfHolder1.toString());
     }

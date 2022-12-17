@@ -23,10 +23,8 @@ public class ScenarioTest {
 
     @Test
     public void testToString() {
-        String expectedString =
-                "{\"name\":\"Name',\"site\":\"Site',\"steps\":\"" +
-                        "[{\"action\":\"Action1\",\"value\":\"Value1\"}, " +
-                        "{\"action\":\"Action2\",\"value\":\"Value2\"}]}";
+        String expectedString = "Scenario(name=Name, site=Site, steps=[Step(action=Action1, value=Value1)," +
+                " Step(action=Action2, value=Value2)])";
 
         Scenario scenario = new Scenario();
         scenario.setName("Name");
@@ -38,6 +36,4 @@ public class ScenarioTest {
 
         assertEquals(expectedString, scenario.toString());
     }
-
-
 }

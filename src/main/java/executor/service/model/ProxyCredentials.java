@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class ProxyCredentials {
     private String username;
     private String password;
+
 }
