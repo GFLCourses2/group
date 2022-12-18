@@ -20,7 +20,7 @@ public class DefaultProxySourcesClientTest {
 
     @Before
     public void setUp() {
-        proxySourcesClient = new DefaultProxySourcesClient(new ObjectMapper());
+        proxySourcesClient = new DefaultProxySourcesClient();
         expectedResults = new ArrayList<>();
         expectedResults.add(new ProxyConfigHolder(new ProxyNetworkConfig("host1", 8080), new ProxyCredentials("user11", "pass1")));
         expectedResults.add(new ProxyConfigHolder(new ProxyNetworkConfig("host2", 8088), new ProxyCredentials("user2", "pass2")));

@@ -33,7 +33,7 @@ public class WebDriverInitializer implements WebDriverFactory {
     @Override
     public WebDriver create() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        setOptions(chromeOptions, proxySourcesClient.getProxy(), webDriverConfig);
+        setOptions(chromeOptions, proxySourcesClient.getProxy().get(), webDriverConfig);
         return new ChromeDriver(chromeOptions);
     }
 
