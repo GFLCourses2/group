@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
+import java.util.Optional;
 
 @Component
 @Qualifier("webDriverFactoryCommon")
@@ -33,15 +34,15 @@ public class WebDriverInitializer implements WebDriverFactory {
     @Override
     public WebDriver create() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        setOptions(chromeOptions, proxySourcesClient.getProxy().get(), webDriverConfig);
+        setOptions(chromeOptions, proxySourcesClient.getProxy(), webDriverConfig);
         return new ChromeDriver(chromeOptions);
     }
 
     private void setOptions(ChromeOptions chromeOptions,
-                            ProxyConfigHolder proxyConfigHolder,
+                            Optional<ProxyConfigHolder> proxyConfigHolderOptional,
                             WebDriverConfigProperties webDriverConfig) {
         setWebDriverConfig(chromeOptions, webDriverConfig);
-//        setProxy(chromeOptions, proxyConfigHolder);
+        proxyConfigHolderOptional.ifPresent(proxyConfigHolder -> setProxy(chromeOptions, proxyConfigHolder));
     }
 
     private void setWebDriverConfig(ChromeOptions chromeOptions, WebDriverConfigProperties webDriverConfig) {

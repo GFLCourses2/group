@@ -28,17 +28,18 @@ public class DefaultScenarioExecutor implements ScenarioExecutor {
             webDriver.get(scenario.getSite());
             List<Step> steps = scenario.getSteps();
             for (Step step : steps) {
-                if ("clickcss".equalsIgnoreCase(step.getAction())) {
+                if (step.getAction().equalsIgnoreCase("clickcss")) {
                     if (callback != null) {
                         callback.run();
                     }
                     clickCss.step(webDriver, step);
-                } else if ("clickXpath".equalsIgnoreCase(step.getAction())) {
+
+                } else if (step.getAction().equalsIgnoreCase("clickXpath")) {
                     if (callback != null) {
                         callback.run();
                     }
                     clickXpath.step(webDriver, step);
-                } else if ("sleep".equalsIgnoreCase(step.getAction())) {
+                } else if (step.getAction().equalsIgnoreCase("sleep")) {
                     if (callback != null) {
                         callback.run();
                     }
