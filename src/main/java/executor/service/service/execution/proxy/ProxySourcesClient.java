@@ -2,6 +2,9 @@ package executor.service.service.execution.proxy;
 
 import executor.service.model.ProxyConfigHolder;
 
+import java.util.Optional;
+
 public interface ProxySourcesClient {
-    ProxyConfigHolder getProxy();
+    Optional<ProxyConfigHolder> getProxy();
+    void addProxy(ProxyConfigHolder proxyConfigHolder);
 }
