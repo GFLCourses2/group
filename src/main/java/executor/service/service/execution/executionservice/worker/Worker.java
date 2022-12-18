@@ -30,7 +30,6 @@ public class Worker extends Thread {
 
     @Override
     public void run() {
-
         while (!exit) {
             try {
                 Optional<Scenario> scenarioOptional = scenarioHolder.getScenario();

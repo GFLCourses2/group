@@ -41,7 +41,7 @@ public class WebDriverInitializer implements WebDriverFactory {
                             ProxyConfigHolder proxyConfigHolder,
                             WebDriverConfigProperties webDriverConfig) {
         setWebDriverConfig(chromeOptions, webDriverConfig);
-        setProxy(chromeOptions, proxyConfigHolder);
+//        setProxy(chromeOptions, proxyConfigHolder);
     }
 
     private void setWebDriverConfig(ChromeOptions chromeOptions, WebDriverConfigProperties webDriverConfig) {
