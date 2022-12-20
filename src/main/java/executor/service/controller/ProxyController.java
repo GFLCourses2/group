@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProxyController {
     private ProxySourcesClient proxySourcesClient;
 
-    @PostMapping(value = "/proxy/add",consumes = "application/json", produces = "application/json")
-    private ResponseEntity<?> addProxy(@RequestBody ProxyConfigHolder proxyConfigHolder){
+    @PostMapping(value = "/proxy/add", consumes = "application/json", produces = "application/json")
+    private ResponseEntity<?> addProxy(@RequestBody ProxyConfigHolder proxyConfigHolder) {
         proxySourcesClient.addProxy(proxyConfigHolder);
         return ResponseEntity.ok("Added proxy successfully");
     }

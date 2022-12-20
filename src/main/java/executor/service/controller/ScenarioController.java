@@ -1,14 +1,12 @@
 package executor.service.controller;
 
 import executor.service.model.Scenario;
-import executor.service.model.Step;
 import executor.service.service.holder.ScenarioHolder;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor

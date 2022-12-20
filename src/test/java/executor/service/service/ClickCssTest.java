@@ -13,8 +13,8 @@ import static org.junit.Assert.assertEquals;
 
 public class ClickCssTest {
 
-    private StepExecution stepExecution;
     private final WebDriverForTests webDriverForTests = new WebDriverForTests();
+    private StepExecution stepExecution;
 
     @Before
     public void setUp() {

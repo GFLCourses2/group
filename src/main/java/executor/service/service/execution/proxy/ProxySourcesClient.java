@@ -6,5 +6,6 @@ import java.util.Optional;
 
 public interface ProxySourcesClient {
     Optional<ProxyConfigHolder> getProxy();
+
     void addProxy(ProxyConfigHolder proxyConfigHolder);
 }

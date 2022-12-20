@@ -1,6 +1,5 @@
 package executor.service.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import executor.service.model.ProxyConfigHolder;
 import executor.service.model.ProxyCredentials;
 import executor.service.model.ProxyNetworkConfig;
@@ -11,8 +10,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 public class DefaultProxySourcesClientTest {
     private ProxySourcesClient proxySourcesClient;

@@ -1,6 +1,5 @@
 package executor.service.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import executor.service.model.Scenario;
 import executor.service.model.Step;
 import executor.service.service.holder.DefaultScenarioHolder;
@@ -15,8 +14,6 @@ import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static org.junit.Assert.assertArrayEquals;
 
 public class DefaultScenarioSourceListenerTest {
 

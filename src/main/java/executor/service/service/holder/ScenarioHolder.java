@@ -6,5 +6,6 @@ import java.util.Optional;
 
 public interface ScenarioHolder {
     void addScenario(Scenario scenario);
+
     Optional<Scenario> getScenario();
 }

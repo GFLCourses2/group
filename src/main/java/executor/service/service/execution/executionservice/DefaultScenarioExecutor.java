@@ -2,11 +2,7 @@ package executor.service.service.execution.executionservice;
 
 import executor.service.model.Scenario;
 import executor.service.model.Step;
-import executor.service.service.execution.stepexecution.ClickCss;
-import executor.service.service.execution.stepexecution.ClickXpath;
-import executor.service.service.execution.stepexecution.Sleep;
 import executor.service.service.execution.stepexecution.StepExecution;
-import lombok.AllArgsConstructor;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
