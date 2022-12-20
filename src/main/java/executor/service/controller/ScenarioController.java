@@ -16,13 +16,6 @@ public class ScenarioController {
 
     private ScenarioHolder scenarioHolder;
 
-    @GetMapping(value = "/scenario/get/test")
-    public ResponseEntity<Scenario> returnTestScenario() {
-        List<Step> steps = new ArrayList<>();
-        steps.add(new Step("сlickсss", "body > div > div.td-main > div > main > nav > ol > li:nth-child(1) > a"));
-        return ResponseEntity.ok(new Scenario("name", "https://localhost", steps));
-    }
-
     @PostMapping(value = "/scenario/add", consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> addScenario(@RequestBody Scenario scenario) {
         scenarioHolder.addScenario(scenario);

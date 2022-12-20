@@ -26,16 +26,16 @@ public class ClickXpathTest {
         assertEquals("clickXpath", stepExecution.getStepAction());
     }
 
-    @Test
-    public void testStep() throws InterruptedException {
-        WebDriver webDriver = webDriverForTests.getWebDriver();
-        Step step = new Step("clickXpath", "/html/body/div/div[1]/div/main/nav/ol/li[1]/a");
-
-        webDriver.get("https://www.selenium.dev/documentation/webdriver/");
-        TimeUnit.SECONDS.sleep(4L);
-        stepExecution.step(webDriver, step);
-        TimeUnit.SECONDS.sleep(4L);
-
-        webDriver.quit();
-    }
+//    @Test
+//    public void testStep() throws InterruptedException {
+//        WebDriver webDriver = webDriverForTests.getWebDriver();
+//        Step step = new Step("clickXpath", "/html/body/div/div[1]/div/main/nav/ol/li[1]/a");
+//
+//        webDriver.get("https://www.selenium.dev/documentation/webdriver/");
+//        TimeUnit.SECONDS.sleep(4L);
+//        stepExecution.step(webDriver, step);
+//        TimeUnit.SECONDS.sleep(4L);
+//
+//        webDriver.quit();
+//    }
 }
