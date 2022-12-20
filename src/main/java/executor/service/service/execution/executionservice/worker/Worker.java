@@ -1,30 +1,27 @@
 package executor.service.service.execution.executionservice.worker;
 
-import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.model.Scenario;
 import executor.service.service.execution.executionservice.ScenarioExecutor;
 import executor.service.service.holder.ScenarioHolder;
+import org.openqa.selenium.WebDriver;
 
 import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-public class Worker extends Thread {
+public abstract class Worker extends Thread {
 
     private final ScenarioHolder scenarioHolder;
 
     private final ScenarioExecutor scenarioExecutor;
 
-    private final WebDriverFactory webDriverFactory;
-
     private final CountDownLatch countDownLatch;
     private boolean exit = false;
 
     public Worker(ScenarioHolder scenarioHolder, ScenarioExecutor scenarioExecutor,
-                  WebDriverFactory webDriverFactory, CountDownLatch countDownLatch) {
+                  CountDownLatch countDownLatch) {
         this.scenarioHolder = scenarioHolder;
         this.scenarioExecutor = scenarioExecutor;
-        this.webDriverFactory = webDriverFactory;
         this.countDownLatch = countDownLatch;
     }
 
@@ -38,7 +35,7 @@ public class Worker extends Thread {
                     continue;
                 }
                 Scenario scenario = scenarioOptional.get();
-                scenarioExecutor.execute(scenario, webDriverFactory.create());
+                scenarioExecutor.execute(scenario, getWebDriver());
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -46,6 +43,8 @@ public class Worker extends Thread {
         }
         countDownLatch.countDown();
     }
+
+    protected abstract WebDriver getWebDriver();
 
 
     @Override

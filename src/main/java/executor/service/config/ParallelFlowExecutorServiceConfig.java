@@ -1,11 +1,11 @@
 package executor.service.config;
 
-import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.service.execution.executionservice.ParallelFlowExecutorService;
 import executor.service.service.execution.executionservice.ScenarioExecutor;
 import executor.service.service.execution.executionservice.worker.Worker;
 import executor.service.service.holder.ScenarioHolder;
 import lombok.AllArgsConstructor;
+import org.openqa.selenium.WebDriver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -24,13 +24,14 @@ public class ParallelFlowExecutorServiceConfig {
 
     private ScenarioExecutor scenarioExecutor;
 
-    private WebDriverFactory webDriverFactory;
+    private WebDriverFactoryConfig webDriverFactoryConfig;
 
 
     @Bean
     public ThreadPoolExecutor threadPoolExecutor() {
         return (ThreadPoolExecutor) Executors.newFixedThreadPool(threadPoolConfig.getCorePoolSize());
     }
+
     @Bean
     public CountDownLatch countDownLatch() {
         return new CountDownLatch(threadPoolConfig.getCorePoolSize());
@@ -39,7 +40,12 @@ public class ParallelFlowExecutorServiceConfig {
     @Bean
     @Scope("prototype")
     public Worker worker() {
-        return new Worker(scenarioHolder, scenarioExecutor, webDriverFactory, countDownLatch());
+        return new Worker(scenarioHolder, scenarioExecutor, countDownLatch()) {
+            @Override
+            protected WebDriver getWebDriver() {
+                return webDriverFactoryConfig.webDriver();
+            }
+        };
     }
 
     @Bean
