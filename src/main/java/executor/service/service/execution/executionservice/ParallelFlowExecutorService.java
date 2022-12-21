@@ -1,5 +1,6 @@
 package executor.service.service.execution.executionservice;
 
+import executor.service.annotation.Main;
 import executor.service.service.execution.executionservice.worker.Worker;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ public abstract class ParallelFlowExecutorService {
 
     private CountDownLatch countDownLatch;
 
+    @Main
     public void run() {
         startWorkers(threadPoolExecutor);
         threadPoolExecutor.shutdown();
