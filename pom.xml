@@ -20,7 +20,7 @@
         <jackson-databind.version>2.14.0</jackson-databind.version>
         <reflections-version>0.10.2</reflections-version>
         <maven-assembly-plugin-version>3.4.2</maven-assembly-plugin-version>
-        <spring-boot-version>2.7.0</spring-boot-version>
+        <spring-boot-version>2.5.5</spring-boot-version>
         <lombok-version>1.18.24</lombok-version>
         <mockito-core-version>4.8.0</mockito-core-version>
     </properties>
