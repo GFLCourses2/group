@@ -15,22 +15,21 @@ public class ProxyConfigHolder {
         this.proxyCredentials = proxyCredentials;
     }
 
-    public void setProxyNetworkConfig(ProxyNetworkConfig proxyNetworkConfig) {
-        this.proxyNetworkConfig = proxyNetworkConfig;
-    }
-
-    public void setProxyCredentials(ProxyCredentials proxyCredentials) {
-        this.proxyCredentials = proxyCredentials;
-    }
-
     public ProxyNetworkConfig getProxyNetworkConfig() {
         return proxyNetworkConfig;
+    }
+
+    public void setProxyNetworkConfig(ProxyNetworkConfig proxyNetworkConfig) {
+        this.proxyNetworkConfig = proxyNetworkConfig;
     }
 
     public ProxyCredentials getProxyCredentials() {
         return proxyCredentials;
     }
 
+    public void setProxyCredentials(ProxyCredentials proxyCredentials) {
+        this.proxyCredentials = proxyCredentials;
+    }
 
     @Override
     public boolean equals(Object o) {

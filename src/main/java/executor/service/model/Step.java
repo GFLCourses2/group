@@ -4,7 +4,8 @@ public class Step {
     private String action;
     private String value;
 
-    public Step() {}
+    public Step() {
+    }
 
     public Step(String action, String value) {
         this.action = action;
@@ -16,12 +17,12 @@ public class Step {
         return action;
     }
 
-    public String getValue() {
-        return value;
-    }
-
     public void setAction(String action) {
         this.action = action;
+    }
+
+    public String getValue() {
+        return value;
     }
 
     public void setValue(String value) {
@@ -32,10 +33,11 @@ public class Step {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        Step step = (Step)o;
+        Step step = (Step) o;
         return this.action.equals(step.action) && this.value.equals(step.value);
 
     }
+
     @Override
     public int hashCode() {
         int result = action != null ? action.hashCode() : 0;

@@ -9,20 +9,20 @@ import static org.junit.Assert.assertEquals;
 
 public class ScenarioTest {
     @Test
-    public void testEqualsAndHashCode(){
+    public void testEqualsAndHashCode() {
         Scenario scenario1 = new Scenario("Name",
                 "Site",
                 new ArrayList<>());
         Scenario scenario2 = new Scenario("Name",
                 "Site",
                 new ArrayList<>());
-        assertEquals(scenario1,scenario2);
+        assertEquals(scenario1, scenario2);
         assertEquals(scenario1.hashCode(), scenario2.hashCode());
     }
 
 
     @Test
-    public void testToString(){
+    public void testToString() {
         String expectedString =
                 "{\"name\":\"Name',\"site\":\"Site',\"steps\":\"" +
                         "[{\"action\":\"Action1\",\"value\":\"Value1\"}, " +
@@ -32,11 +32,11 @@ public class ScenarioTest {
         scenario.setName("Name");
         scenario.setSite("Site");
         List<Step> listSteps = new ArrayList<>();
-        listSteps.add(new Step("Action1","Value1"));
-        listSteps.add(new Step("Action2","Value2"));
+        listSteps.add(new Step("Action1", "Value1"));
+        listSteps.add(new Step("Action2", "Value2"));
         scenario.setSteps(listSteps);
 
-        assertEquals(expectedString,scenario.toString() );
+        assertEquals(expectedString, scenario.toString());
     }
 
 
