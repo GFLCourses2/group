@@ -23,7 +23,7 @@
         <spring-boot-version>2.3.12.RELEASE</spring-boot-version>
         <lombok-version>1.18.24</lombok-version>
         <mockito-core-version>4.8.0</mockito-core-version>
-        <javax-annotation-version>1.3.2</javax-annotation-version>
+        <jakarta-annotation-version>2.1.1</jakarta-annotation-version>
     </properties>
 
     <build>
@@ -31,6 +31,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.1.12.RELEASE</version>
                 <executions>
                     <execution>
                         <goals>
@@ -106,11 +107,10 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-            <version>${javax-annotation-version}</version>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>${jakarta-annotation-version}</version>
         </dependency>
-
 
     </dependencies>
 </project>
