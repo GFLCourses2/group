@@ -3,7 +3,7 @@ package executor.service.config;
 import executor.service.service.execution.executionservice.ParallelFlowExecutorService;
 import executor.service.service.execution.executionservice.ScenarioExecutor;
 import executor.service.service.execution.executionservice.worker.Worker;
-import executor.service.service.holder.ScenarioHolder;
+import executor.service.service.holder.scenario.ScenarioHolder;
 import lombok.AllArgsConstructor;
 import org.openqa.selenium.WebDriver;
 import org.springframework.context.annotation.Bean;

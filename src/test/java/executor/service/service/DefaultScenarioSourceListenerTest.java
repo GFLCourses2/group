@@ -2,8 +2,8 @@ package executor.service.service;
 
 import executor.service.model.Scenario;
 import executor.service.model.Step;
-import executor.service.service.holder.DefaultScenarioHolder;
-import executor.service.service.holder.ScenarioHolder;
+import executor.service.service.holder.scenario.DefaultScenarioHolder;
+import executor.service.service.holder.scenario.ScenarioHolder;
 import org.junit.Before;
 import org.junit.Test;
 

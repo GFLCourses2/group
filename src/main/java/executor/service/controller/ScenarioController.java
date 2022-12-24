@@ -1,7 +1,7 @@
 package executor.service.controller;
 
 import executor.service.model.Scenario;
-import executor.service.service.holder.ScenarioHolder;
+import executor.service.service.holder.scenario.ScenarioHolder;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

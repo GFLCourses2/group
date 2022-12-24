@@ -3,7 +3,7 @@ package executor.service.factory.webdriver;
 import executor.service.config.WebDriverConfigProperties;
 import executor.service.model.ProxyConfigHolder;
 import executor.service.model.ProxyNetworkConfig;
-import executor.service.service.execution.proxy.ProxySourcesClient;
+import executor.service.service.holder.proxy.ProxySourcesClient;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.openqa.selenium.Proxy;

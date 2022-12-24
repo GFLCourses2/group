@@ -3,7 +3,7 @@ package executor.service.service;
 import executor.service.config.WebDriverConfigProperties;
 import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.factory.webdriver.WebDriverInitializer;
-import executor.service.service.execution.proxy.DefaultProxySourcesClient;
+import executor.service.service.holder.proxy.DefaultProxySourcesClient;
 import org.openqa.selenium.WebDriver;
 
 public class WebDriverForTests {

@@ -1,4 +1,4 @@
-package executor.service.service.execution.proxy;
+package executor.service.service.holder.proxy;
 
 import executor.service.model.ProxyConfigHolder;
 import org.springframework.stereotype.Service;

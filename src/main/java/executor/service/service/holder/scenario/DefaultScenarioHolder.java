@@ -1,4 +1,4 @@
-package executor.service.service.holder;
+package executor.service.service.holder.scenario;
 
 import executor.service.model.Scenario;
 import org.springframework.stereotype.Service;

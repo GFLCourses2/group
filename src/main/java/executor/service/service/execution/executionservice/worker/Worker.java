@@ -2,7 +2,7 @@ package executor.service.service.execution.executionservice.worker;
 
 import executor.service.model.Scenario;
 import executor.service.service.execution.executionservice.ScenarioExecutor;
-import executor.service.service.holder.ScenarioHolder;
+import executor.service.service.holder.scenario.ScenarioHolder;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Optional;

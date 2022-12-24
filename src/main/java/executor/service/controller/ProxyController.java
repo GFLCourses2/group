@@ -1,7 +1,7 @@
 package executor.service.controller;
 
 import executor.service.model.ProxyConfigHolder;
-import executor.service.service.execution.proxy.ProxySourcesClient;
+import executor.service.service.holder.proxy.ProxySourcesClient;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
