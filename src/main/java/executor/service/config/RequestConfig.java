@@ -6,9 +6,9 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@PropertySource("classpath:/requestScenario.properties")
+@PropertySource("classpath:/request.properties")
 @Data
-public class RequestScenarioConfig {
-    @Value("${request.scenario.fixedRate}")
+public class RequestConfig {
+    @Value("${request.fixedRate}")
     private long fixedRate;
 }
