@@ -1,13 +1,9 @@
 package executor.service.service;
 
-import executor.service.model.Step;
 import executor.service.service.execution.stepexecution.ClickCss;
 import executor.service.service.execution.stepexecution.StepExecution;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 

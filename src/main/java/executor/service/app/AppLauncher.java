@@ -13,6 +13,7 @@ public class AppLauncher implements CommandLineRunner {
     private final ParallelFlowExecutorService parallelFlowExecutorService;
 
     private final Logger LOGGER = LoggerFactory.getLogger(AppLauncher.class);
+
     @Override
     public void run(String... args) throws Exception {
         parallelFlowExecutorService.run();
