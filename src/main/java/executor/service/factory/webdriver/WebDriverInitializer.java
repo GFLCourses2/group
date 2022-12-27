@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.Optional;
 
@@ -26,9 +27,15 @@ public class WebDriverInitializer implements WebDriverFactory {
 
     @PostConstruct
     private void initWebDriverExecutable() {
-        String pathToWebDriverExecutable = "src/main/";
-        System.setProperty(
-                "webdriver.chrome.driver", pathToWebDriverExecutable + webDriverConfig.getWebDriverExecutable());
+        String debugPath = "src/main/" + webDriverConfig.getWebDriverExecutable();
+        if (new File(debugPath).exists()) {
+            System.setProperty(
+                    "webdriver.chrome.driver", debugPath);
+        } else {
+            String prodPath = "classes/chromedriver.exe";
+            System.setProperty(
+                    "webdriver.chrome.driver", prodPath);
+        }
     }
 
     @Override
