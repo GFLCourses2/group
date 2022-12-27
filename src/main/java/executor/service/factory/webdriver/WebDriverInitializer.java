@@ -42,7 +42,7 @@ public class WebDriverInitializer implements WebDriverFactory {
                             Optional<ProxyConfigHolder> proxyConfigHolderOptional,
                             WebDriverConfigProperties webDriverConfig) {
 
-        chromeOptions.addArguments("--no-sandbox");
+//        chromeOptions.addArguments("--no-sandbox");
         setWebDriverConfig(chromeOptions, webDriverConfig);
         proxyConfigHolderOptional.ifPresent(proxyConfigHolder -> setProxy(chromeOptions, proxyConfigHolder));
     }
