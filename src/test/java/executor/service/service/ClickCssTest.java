@@ -28,14 +28,14 @@ public class ClickCssTest {
 
     @Test
     public void step() throws InterruptedException {
-        WebDriver webDriver = webDriverForTests.getWebDriver();
-        Step step = new Step("сlickсss", "body > div > div.td-main > div > main > nav > ol > li:nth-child(1) > a");
-
-        webDriver.get("https://www.selenium.dev/documentation/webdriver/");
-        TimeUnit.SECONDS.sleep(3L);
-        stepExecution.step(webDriver, step);
-        TimeUnit.SECONDS.sleep(3L);
-
-        webDriver.quit();
+//        WebDriver webDriver = webDriverForTests.getWebDriver();
+//        Step step = new Step("сlickсss", "body > div > div.td-main > div > main > nav > ol > li:nth-child(1) > a");
+//
+//        webDriver.get("https://www.selenium.dev/documentation/webdriver/");
+//        TimeUnit.SECONDS.sleep(3L);
+//        stepExecution.step(webDriver, step);
+//        TimeUnit.SECONDS.sleep(3L);
+//
+//        webDriver.quit();
     }
 }
