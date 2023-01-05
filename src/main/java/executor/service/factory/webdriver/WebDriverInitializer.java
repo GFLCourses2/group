@@ -1,9 +1,9 @@
 package executor.service.factory.webdriver;
 
-import executor.service.config.WebDriverConfigProperties;
+import executor.service.config.properties.WebDriverConfigProperties;
 import executor.service.model.ProxyConfigHolder;
 import executor.service.model.ProxyNetworkConfig;
-import executor.service.service.holder.proxy.ProxySourcesClient;
+import executor.service.service.holder.proxy.ProxyHandler;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.openqa.selenium.Proxy;
@@ -22,7 +22,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class WebDriverInitializer implements WebDriverFactory {
 
-    private final ProxySourcesClient proxySourcesClient;
+    private final ProxyHandler proxyHandler;
     private final WebDriverConfigProperties webDriverConfig;
 
     @PostConstruct
@@ -41,7 +41,7 @@ public class WebDriverInitializer implements WebDriverFactory {
     @Override
     public WebDriver create() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        setOptions(chromeOptions, proxySourcesClient.getProxy(), webDriverConfig);
+        setOptions(chromeOptions, proxyHandler.getProxy(), webDriverConfig);
         return new ChromeDriver(chromeOptions);
     }
 

@@ -1,9 +1,9 @@
 package executor.service.service;
 
-import executor.service.config.WebDriverConfigProperties;
+import executor.service.config.properties.WebDriverConfigProperties;
 import executor.service.factory.webdriver.WebDriverFactory;
 import executor.service.factory.webdriver.WebDriverInitializer;
-import executor.service.service.holder.proxy.DefaultProxySourcesClient;
+import executor.service.service.holder.proxy.DefaultProxyHandler;
 import org.openqa.selenium.WebDriver;
 
 public class WebDriverForTests {
@@ -15,7 +15,7 @@ public class WebDriverForTests {
         webDriverConfigProperties.setUserAgent("desktop");
         webDriverConfigProperties.setImplicitlyWait(1L);
 
-        WebDriverFactory webDriverFactory = new WebDriverInitializer(new DefaultProxySourcesClient(), webDriverConfigProperties);
+        WebDriverFactory webDriverFactory = new WebDriverInitializer(new DefaultProxyHandler(), webDriverConfigProperties);
 
         return webDriverFactory.create();
     }

@@ -9,7 +9,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 
 @Service
-public class DefaultProxySourcesClient implements ProxySourcesClient {
+public class DefaultProxyHandler implements ProxyHandler {
     private final Queue<ProxyConfigHolder> proxyConfigHoldersQueue = new LinkedBlockingQueue<>();
 
     @Override

@@ -1,5 +1,6 @@
 package executor.service.config;
 
+import executor.service.config.properties.ThreadPoolConfigProperties;
 import executor.service.service.execution.executionservice.ParallelFlowExecutorService;
 import executor.service.service.execution.executionservice.ScenarioExecutor;
 import executor.service.service.execution.executionservice.worker.Worker;
@@ -18,7 +19,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @AllArgsConstructor
 public class ParallelFlowExecutorServiceConfig {
 
-    private ThreadPoolConfig threadPoolConfig;
+    private ThreadPoolConfigProperties threadPoolConfigProperties;
 
     private ScenarioHolder scenarioHolder;
 
@@ -29,12 +30,12 @@ public class ParallelFlowExecutorServiceConfig {
 
     @Bean
     public ThreadPoolExecutor threadPoolExecutor() {
-        return (ThreadPoolExecutor) Executors.newFixedThreadPool(threadPoolConfig.getCorePoolSize());
+        return (ThreadPoolExecutor) Executors.newFixedThreadPool(threadPoolConfigProperties.getCorePoolSize());
     }
 
     @Bean
     public CountDownLatch countDownLatch() {
-        return new CountDownLatch(threadPoolConfig.getCorePoolSize());
+        return new CountDownLatch(threadPoolConfigProperties.getCorePoolSize());
     }
 
     @Bean

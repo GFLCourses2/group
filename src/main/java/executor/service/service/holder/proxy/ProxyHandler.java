@@ -4,7 +4,7 @@ import executor.service.model.ProxyConfigHolder;
 
 import java.util.Optional;
 
-public interface ProxySourcesClient {
+public interface ProxyHandler {
     Optional<ProxyConfigHolder> getProxy();
 
     void addProxy(ProxyConfigHolder proxyConfigHolder);
