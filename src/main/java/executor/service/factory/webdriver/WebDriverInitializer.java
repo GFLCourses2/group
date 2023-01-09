@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.time.Duration;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Component
 @Qualifier("webDriverFactoryCommon")
@@ -42,7 +43,10 @@ public class WebDriverInitializer implements WebDriverFactory {
     public WebDriver create() {
         ChromeOptions chromeOptions = new ChromeOptions();
         setOptions(chromeOptions, proxyHandler.getProxy(), webDriverConfig);
-        return new ChromeDriver(chromeOptions);
+        ChromeDriver driver = new ChromeDriver(chromeOptions);
+
+        driver.manage().timeouts().implicitlyWait(Duration.of(5, TimeUnit.SECONDS.toChronoUnit()));
+        return driver;
     }
 
     private void setOptions(ChromeOptions chromeOptions,
