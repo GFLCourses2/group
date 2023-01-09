@@ -49,7 +49,9 @@ public class WebDriverInitializer implements WebDriverFactory {
                             Optional<ProxyConfigHolder> proxyConfigHolderOptional,
                             WebDriverConfigProperties webDriverConfig) {
 
-//        chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--disable-dev-shm-usage");
         setWebDriverConfig(chromeOptions, webDriverConfig);
         proxyConfigHolderOptional.ifPresent(proxyConfigHolder -> setProxy(chromeOptions, proxyConfigHolder));
     }
