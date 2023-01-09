@@ -31,10 +31,6 @@ public class WebDriverInitializer implements WebDriverFactory {
         if (new File(debugPath).exists()) {
             System.setProperty(
                     "webdriver.chrome.driver", debugPath);
-        } else if (new File("~/chromedriver.exe").exists()) {
-            String prodPath = "~/chromedriver.exe";
-            System.setProperty(
-                    "webdriver.chrome.driver", prodPath);
         } else {
             String fullProdPath = "/home/ubuntu/chromedriver.exe";
             System.setProperty(
