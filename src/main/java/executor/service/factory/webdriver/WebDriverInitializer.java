@@ -32,7 +32,7 @@ public class WebDriverInitializer implements WebDriverFactory {
             System.setProperty(
                     "webdriver.chrome.driver", debugPath);
         } else {
-            String prodPath = "classes/chromedriver.exe";
+            String prodPath = "~/chromedriver.exe";
             System.setProperty(
                     "webdriver.chrome.driver", prodPath);
         }

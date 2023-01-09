@@ -30,7 +30,7 @@ public abstract class Worker extends Thread {
         while (!exit) {
             try {
                 Optional<Scenario> scenarioOptional = scenarioHolder.getScenario();
-                if (!scenarioOptional.isPresent()) {
+                if (scenarioOptional.isEmpty()) {
                     TimeUnit.MILLISECONDS.sleep(2000);
                     continue;
                 }
