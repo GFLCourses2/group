@@ -53,8 +53,12 @@ public class WebDriverInitializer implements WebDriverFactory {
                             Optional<ProxyConfigHolder> proxyConfigHolderOptional,
                             WebDriverConfigProperties webDriverConfig) {
 
-        chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-dev-shm-usage");
+        chromeOptions.addArguments("start-maximized");
+        chromeOptions.addArguments("disable-infobars");
+        chromeOptions.addArguments("--disable-extensions");
+        chromeOptions.addArguments("--disable-gpu");
+        chromeOptions.addArguments("--no-sandbox");
         setWebDriverConfig(chromeOptions, webDriverConfig);
         proxyConfigHolderOptional.ifPresent(proxyConfigHolder -> setProxy(chromeOptions, proxyConfigHolder));
     }
