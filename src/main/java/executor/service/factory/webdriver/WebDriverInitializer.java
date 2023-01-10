@@ -54,6 +54,7 @@ public class WebDriverInitializer implements WebDriverFactory {
                             WebDriverConfigProperties webDriverConfig) {
 
         chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--remote-debugging-port=9222");
         chromeOptions.addArguments("--disable-dev-shm-usage");
         setWebDriverConfig(chromeOptions, webDriverConfig);
         proxyConfigHolderOptional.ifPresent(proxyConfigHolder -> setProxy(chromeOptions, proxyConfigHolder));
