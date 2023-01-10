@@ -18,6 +18,26 @@
     ]
   },
   {
+    "name": "proxy test 1",
+    "site": "https://tarik-systems.herokuapp.com",
+    "steps": [
+      {
+        "action": "sleep",
+        "value": "25"
+      }
+    ]
+  },
+  {
+    "name": "proxy test 2",
+    "site": "https://2ip.io/ua/",
+    "steps": [
+      {
+        "action": "sleep",
+        "value": "25"
+      }
+    ]
+  },
+  {
     "name": "test scenario 2",
     "site": "http://info.cern.ch",
     "steps": [

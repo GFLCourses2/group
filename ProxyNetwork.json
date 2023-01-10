@@ -1,14 +1,18 @@
 [
   {
-    "hostname": "host1",
-    "port": 8080
+    "hostname": "50.174.7.155",
+    "port": 80
   },
   {
-    "hostname": "host2",
-    "port": 8088
+    "hostname": "50.174.7.157",
+    "port": 80
   },
   {
-    "hostname": "host3",
-    "port": 8089
+    "hostname": "50.174.7.153",
+    "port": 80
+  },
+  {
+    "hostname": "50.218.57.67",
+    "port": 80
   }
 ]

@@ -2,9 +2,14 @@ package executor.service.service.execution.stepexecution;
 
 import executor.service.model.Step;
 import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
+
+@Service
+@Qualifier("Sleep")
 public class Sleep implements StepExecution {
 
     @Override

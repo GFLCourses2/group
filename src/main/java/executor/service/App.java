@@ -1,13 +1,17 @@
 package executor.service;
 
-import executor.service.factory.servicefactory.DefaultServiceFactory;
-import executor.service.factory.servicefactory.ServiceFactory;
-import executor.service.service.execution.executionservice.ParallelFlowExecutorService;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
+@SpringBootApplication
+@EnableScheduling
 public class App {
     public static void main(String[] args) {
-        ServiceFactory serviceFactory = new DefaultServiceFactory();
-        ParallelFlowExecutorService executorService = serviceFactory.create(ParallelFlowExecutorService.class);
-        executorService.run();
+        try {
+            SpringApplication.run(App.class, args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
