@@ -53,6 +53,7 @@ public class WebDriverInitializer implements WebDriverFactory {
                             Optional<ProxyConfigHolder> proxyConfigHolderOptional,
                             WebDriverConfigProperties webDriverConfig) {
 
+        chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--disable-dev-shm-usage");
         chromeOptions.addArguments("start-maximized");
         chromeOptions.addArguments("disable-infobars");
